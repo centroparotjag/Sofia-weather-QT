@@ -35,18 +35,19 @@ void MainWindow::onGo() {
 
     //------ Print data update time ----------
     ui->textEdit_time_request->clear();
+    ui->textEdit_time_request->setFontWeight(QFont::Bold);
     ui->textEdit_time_request->setTextColor("blue");
     ui->textEdit_time_request->setFontPointSize(8);
     ui->textEdit_time_request->append(QDateTime::currentDateTime().toString("HH:mm:ss dd.MM.yyyy"));
 
 
-    //ui->textEdit->clear();
-     ui->textEdit->append( "\n-----------------------------------------------------------\n" );
-    ui->textEdit->setTextColor("blue");
+    //ui->textEdit->clear();  //format.setFontWeight(QFont::Bold);
+    ui->textEdit->setFontWeight(QFont::Bold);
+    ui->textEdit->setTextColor(QColor::fromRgb(99,184,255));         // QColor::fromRgb(0,20,50)
+    ui->textEdit->append( "********************************************************************" );
+    ui->textEdit->append( "********************************************************************");
     ui->textEdit->append(QDateTime::currentDateTime().toString("dd.MM.yyyy HH:mm:ss") + "\n");
     ui->textEdit->append( "urlText - " + urlText + "\n" );
-
-
 
     m_manager.get( QNetworkRequest( QUrl( urlText ) ) );
 }
@@ -54,9 +55,9 @@ void MainWindow::onGo() {
 void MainWindow::onFinished( QNetworkReply* reply ) {
     if( reply->error() == QNetworkReply::NoError ) {
         QString data = QString::fromUtf8( reply->readAll() );
-        ui->textEdit->setTextColor("red");
-        ui->textEdit->append("XML request\n");
-        ui->textEdit->setTextColor("black");
+        ui->textEdit->setTextColor(QColor::fromRgb(255,69,0));
+        ui->textEdit->append("XML request:");
+        ui->textEdit->setTextColor(QColor::fromRgb(255,99,71));
         ui->textEdit->append( data );
 
 //---------------------------------------------------

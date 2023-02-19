@@ -84,7 +84,7 @@ void MainWindow::parser_request (QString data){
     weather1.directional_angle = (double)weather1.wind_deg/6;
 
     //---------------- debug Log -----------------------------
-    ui->textEdit->setTextColor("green");
+    ui->textEdit->setTextColor(QColor::fromRgb(0,255,0));
     ui->textEdit->append("\nDebug meteo data for Chernivtsi");
     ui->textEdit->append("temp K = "       + QString::number(weather1.temp));
     ui->textEdit->append("temp C = "       + QString::number(weather1.temp-273.16));
@@ -103,13 +103,14 @@ void MainWindow::parser_request (QString data){
 
     ui->textEdit->append(what_is_in_the_sky_ParseData(data));
 
-    ui->textEdit->append("size XML request = " + QString::number(data.size()));
+    ui->textEdit->append("size XML request = " + QString::number(data.size()) + "\n\n");
 
 
     //-------------- Form data print ------------------------------
 
 
     ui->textEdit_temperatura->clear();
+    ui->textEdit_temperatura->setFontWeight(QFont::Bold);
     ui->textEdit_temperatura->setTextColor("green");
     if ((weather1.temp-273.16) < 18){
         ui->textEdit_temperatura->setTextColor("blue");
@@ -123,6 +124,7 @@ void MainWindow::parser_request (QString data){
 
 
     ui->textEdit_humidity->clear();
+    ui->textEdit_humidity->setFontWeight(QFont::Bold);
     ui->textEdit_humidity->setTextColor("green");
     if ((weather1.humidity) < 30 || (weather1.humidity) > 60){
         ui->textEdit_humidity->setTextColor("DeepPink");
@@ -131,6 +133,7 @@ void MainWindow::parser_request (QString data){
     ui->textEdit_humidity->append(QString::number(weather1.humidity) + "%");
 
     ui->textEdit_wind->clear();
+    ui->textEdit_wind->setFontWeight(QFont::Bold);
     ui->textEdit_wind->setTextColor("green");
     if (weather1.wind_speed > 10){
         ui->textEdit_wind->setTextColor("DeepPink");
@@ -140,21 +143,25 @@ void MainWindow::parser_request (QString data){
 
 
     ui->textEdit_wind_deg->clear();
+    ui->textEdit_wind_deg->setFontWeight(QFont::Bold);
     ui->textEdit_wind_deg->setTextColor("green");
     ui->textEdit_wind_deg->setFontPointSize(10);
     ui->textEdit_wind_deg->append(QString::number(weather1.wind_deg) + "°");
 
     ui->textEdit_state->clear();
+    ui->textEdit_state->setFontWeight(QFont::Bold);
     ui->textEdit_state->setTextColor("green");
     ui->textEdit_state->setFontPointSize(10);
     ui->textEdit_state->append(what_is_in_the_sky_ParseData(data));
 
     ui->textEdit_Sun_up->clear();
+    ui->textEdit_Sun_up->setFontWeight(QFont::Bold);
     ui->textEdit_Sun_up->setTextColor("green");
     ui->textEdit_Sun_up->setFontPointSize(10);
     ui->textEdit_Sun_up->append(unixTimeToHumanReadable(weather1.sunrise));
 
     ui->textEdit_Sun_down->clear();
+    ui->textEdit_Sun_down->setFontWeight(QFont::Bold);
     ui->textEdit_Sun_down->setTextColor("green");
     ui->textEdit_Sun_down->setFontPointSize(10);
     ui->textEdit_Sun_down->append(unixTimeToHumanReadable(weather1.sunset));
