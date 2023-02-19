@@ -5,7 +5,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
 
-TARGET = httpRequest
+TARGET = WeatherInformerForSofia
 
 QMAKE_LFLAGS += -static -static-libgcc -static-libstdc++
 
@@ -20,6 +20,8 @@ SOURCES += \
     mainwindow.cpp \
     second_window.cpp
 
+
+
 HEADERS += \
     mainwindow.h \
     second_window.h
@@ -28,7 +30,12 @@ FORMS += \
     mainwindow.ui \
     second_window.ui
 
+RC_FILE = appIcon.rc
+
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES +=

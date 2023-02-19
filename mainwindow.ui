@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string extracomment="  ">V1.0</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="pushButton">
