@@ -382,7 +382,7 @@ p, li { white-space: pre-wrap; }
      </font>
     </property>
     <property name="title">
-     <string>Софійчина погода</string>
+     <string>Софійчина погода для Чернівців</string>
     </property>
     <addaction name="separator"/>
    </widget>
