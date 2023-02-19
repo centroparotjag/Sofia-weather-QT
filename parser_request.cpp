@@ -97,7 +97,6 @@ void MainWindow::parser_request (QString data){
     ui->textEdit->append("sunrise Unix time (UTC) = "    + QString::number(weather1.sunrise));
     ui->textEdit->append("sunset Unix time (UTC) = "     + QString::number(weather1.sunset));
 
-    int const size = data.size();
 
     ui->textEdit->append("sunrise - "+ unixTimeToHumanReadable(weather1.sunrise));
     ui->textEdit->append("sunset - "+ unixTimeToHumanReadable(weather1.sunset));
