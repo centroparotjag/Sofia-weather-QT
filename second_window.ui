@@ -28,6 +28,12 @@
   <property name="windowTitle">
    <string>Сюрприз</string>
   </property>
+  <property name="windowOpacity">
+   <double>0.900000000000000</double>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::LeftToRight</enum>
+  </property>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
