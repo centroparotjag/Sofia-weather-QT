@@ -166,6 +166,22 @@ void MainWindow::parser_request (QString data){
     ui->textEdit_Sun_down->setFontPointSize(10);
     ui->textEdit_Sun_down->append(unixTimeToHumanReadable(weather1.sunset));
 
+    ui->textEdit_duration->clear();
+    ui->textEdit_duration->setFontWeight(QFont::Bold);
+    ui->textEdit_duration->setTextColor("green");
+    ui->textEdit_duration->setFontPointSize(10);
+
+    int duration = weather1.sunset - weather1.sunrise;
+    if(ui->radioButton->isChecked()) {
+        duration -= 7200;           // -2Hr
+    }
+    else{
+        duration -= 10800;          // -3Hr
+    }
+
+    ui->textEdit_duration->append(unixTimeToHumanReadable(duration));
+
+
 
 
 }

@@ -130,9 +130,19 @@ QString MainWindow::unixTimeToHumanReadable(long int seconds)
     ans.append(QString::number(hours + time_zone));
     //ans.append(QString::number(hours));                       // UTC
     ans.append(":");
-    ans.append(QString::number(minutes));
-//    ans.append(":");
-//    ans.append(QString::number(secondss));
+
+    if(minutes < 10){                                           // set 0
+        ans.append("0");
+    }
+
+    ans.append(QString::number(minutes));                       // %3", 2
+
+    ans.append(":");
+
+    if(secondss < 10){                                           // set 0
+        ans.append("0");
+    }
+    ans.append(QString::number(secondss));
 
     // Return the time
     return ans;

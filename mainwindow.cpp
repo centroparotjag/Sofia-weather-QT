@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     connect( ui->pushButton, SIGNAL( clicked( bool ) ), SLOT( onGo() ) );
+    connect( ui->radioButton, SIGNAL( clicked( bool ) ), SLOT( onGo() ) );
     connect( &m_manager, SIGNAL( finished( QNetworkReply* ) ), SLOT( onFinished( QNetworkReply* ) ) );
 
     // default set text
@@ -29,8 +30,10 @@ MainWindow::~MainWindow()
 
 
 void MainWindow::onGo() {
+    // chernivtci
     QString urlText = "https://api.openweathermap.org/data/2.5/weather?id=710719&appid=184fb9b7d1a763b9eb3214f10ea05a72";
-    //QString urlText = "https://openweathermap.org/current";
+    // KHMELNITSKIY
+    //QString urlText = "https://api.openweathermap.org/data/2.5/weather?id=706369&appid=184fb9b7d1a763b9eb3214f10ea05a72";
     qDebug() << "Working...";
 
     //------ Print data update time ----------
@@ -81,3 +84,5 @@ void MainWindow::on_pushButton_2_clicked()
     window.setModal(true);
     window.exec();
 }
+
+
