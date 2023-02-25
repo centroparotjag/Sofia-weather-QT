@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QNetworkReply>
 #include <QNetworkAccessManager>
-
+#include "extwindow.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -20,9 +20,6 @@ public:
     ~MainWindow();
 
 
-
-
-
     struct weather{
         double temp = 0;
         int pressure = 0;
@@ -32,6 +29,7 @@ public:
         double directional_angle = 0;
         int sunrise = 0;
         int sunset = 0;
+        QString city = "";
     };
 
 public:
@@ -39,6 +37,7 @@ public:
     QString find_data(QString data, QString search);
     QString unixTimeToHumanReadable(long int seconds);
     QString what_is_in_the_sky_ParseData(QString data);
+    QString find_city(QString data);
 
 private slots:
     void onGo();
@@ -49,9 +48,14 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_pushButton_3_clicked();
+
+    void on_comboBox_activated(int index);
+
 private:
     Ui::MainWindow *ui;
     QNetworkAccessManager m_manager;
+    extWindow *window;
 
 };
 #endif // MAINWINDOW_H
