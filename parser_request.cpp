@@ -140,15 +140,16 @@ void MainWindow::parser_request (QString data){
 
     ui->textEdit->append(weather1.city);
 
-    setWindowTitle(weather1.city);
+    QString version;
 
+    version = "V1.1 City - ";
+    version.append(weather1.city);
 
-    //ui->textEdit->append("size XML request = " + QString::number(data.size()) + "\n\n");
+    setWindowTitle(version);
+
 
 
     //-------------- Form data print ------------------------------
-
-
     ui->textEdit_temperatura->clear();
     ui->textEdit_temperatura->setFontWeight(QFont::Bold);
     ui->textEdit_temperatura->setTextColor("green");
@@ -160,7 +161,6 @@ void MainWindow::parser_request (QString data){
     }
     ui->textEdit_temperatura->setFontPointSize(10);
     ui->textEdit_temperatura->append(QString::number(weather1.temp-273.16) + "°C");
-
 
 
     ui->textEdit_humidity->clear();

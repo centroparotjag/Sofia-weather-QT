@@ -25,9 +25,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect( ui->comboBox, SIGNAL( clicked( bool ) ), SLOT( onGo() ) );
     connect( &m_manager, SIGNAL( finished( QNetworkReply* ) ), SLOT( onFinished( QNetworkReply* ) ) );
 
-    //setWindowTitle(tr("Menu"));
-
-
 #ifdef QT_DEBUG     // release
 
 #endif
