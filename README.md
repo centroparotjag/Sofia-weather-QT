@@ -1,5 +1,5 @@
 # Софійчина погода
-![Image alt](https://github.com/{username}/centroparotjag/raw/master/image/image.png)
+![Image alt](https://github.com/centroparotjag/Sofia-weather-QT/raw/master/image/image.png)
 ## Проект створений для розваги Софійки та як відновлювальне тренування мозку перебуваючого досить довго в армії.
 "Софійчина погода" використовує ресурс https://openweathermap.org/current для отримання актуальних погодних данних обласних центрів України.
 ---
