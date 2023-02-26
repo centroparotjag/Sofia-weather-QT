@@ -2,9 +2,6 @@
 #include "ui_mainwindow.h"
 #include "second_window.h"
 
-
-
-
 #include <QtXml/QtXml>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
@@ -12,13 +9,16 @@
 
 #include <QDebug>
 
-int id=710719;          // Чернівці default
+QString version ="V1.2";
+int id=710719;              // Чернівці default
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    setWindowTitle(version);
 
     connect( ui->pushButton, SIGNAL( clicked( bool ) ), SLOT( onGo() ) );
     connect( ui->radioButton, SIGNAL( clicked( bool ) ), SLOT( onGo() ) );
@@ -83,8 +83,8 @@ void MainWindow::onGo() {
     //------ Print data update time ----------
     ui->textEdit_time_request->clear();
     ui->textEdit_time_request->setFontWeight(QFont::Bold);
-    ui->textEdit_time_request->setTextColor("blue");
-    ui->textEdit_time_request->setFontPointSize(8);
+    ui->textEdit_time_request->setTextColor(QColor::fromRgb(0, 0, 0));
+    ui->textEdit_time_request->setFontPointSize(10);
     ui->textEdit_time_request->append(QDateTime::currentDateTime().toString("HH:mm:ss dd.MM.yyyy"));
 
 

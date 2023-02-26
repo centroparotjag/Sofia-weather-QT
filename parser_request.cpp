@@ -3,6 +3,8 @@
 #include "ui_mainwindow.h"
 #include <cstring>
 
+QString extern version;
+
 QString MainWindow::find_data(QString data, QString search){
     int skip = 0;
     int length = 0;
@@ -31,12 +33,9 @@ QString MainWindow::find_data(QString data, QString search){
     }
     QString result=data.mid(skip, length);
     qDebug() << result;
-    //return "303";
     return result;
 }
 
-
-// description":"light rain",
 
 QString MainWindow::what_is_in_the_sky_ParseData(QString data){
     int skip;
@@ -140,14 +139,11 @@ void MainWindow::parser_request (QString data){
 
     ui->textEdit->append(weather1.city);
 
-    QString version;
 
-    version = "V1.1 City - ";
-    version.append(weather1.city);
-
-    setWindowTitle(version);
-
-
+    QString ver = version;
+    ver.append(" City - ");
+    ver.append(weather1.city);
+    setWindowTitle(ver);
 
     //-------------- Form data print ------------------------------
     ui->textEdit_temperatura->clear();
@@ -160,7 +156,7 @@ void MainWindow::parser_request (QString data){
         ui->textEdit_temperatura->setTextColor("DeepPink");
     }
     ui->textEdit_temperatura->setFontPointSize(10);
-    ui->textEdit_temperatura->append(QString::number(weather1.temp-273.16) + "°C");
+    ui->textEdit_temperatura->append(QString::number(weather1.temp-273.16) + " °C");
 
 
     ui->textEdit_humidity->clear();
@@ -170,13 +166,13 @@ void MainWindow::parser_request (QString data){
         ui->textEdit_humidity->setTextColor("DeepPink");
     }
     ui->textEdit_humidity->setFontPointSize(10);
-    ui->textEdit_humidity->append(QString::number(weather1.humidity) + "%");
+    ui->textEdit_humidity->append(QString::number(weather1.humidity) + " %");
 
     ui->textEdit_pressure->clear();
     ui->textEdit_pressure->setFontWeight(QFont::Bold);
     ui->textEdit_pressure->setTextColor("green");
     ui->textEdit_pressure->setFontPointSize(10);
-    ui->textEdit_pressure->append(QString::number(weather1.pressure*0.750) + "мм рт.ст.");
+    ui->textEdit_pressure->append(QString::number(weather1.pressure*0.750) + " мм рт.ст.");
 
     ui->textEdit_wind->clear();
     ui->textEdit_wind->setFontWeight(QFont::Bold);
@@ -185,14 +181,14 @@ void MainWindow::parser_request (QString data){
         ui->textEdit_wind->setTextColor("DeepPink");
     }
     ui->textEdit_wind->setFontPointSize(10);
-    ui->textEdit_wind->append(QString::number(weather1.wind_speed) + "м/с");
+    ui->textEdit_wind->append(QString::number(weather1.wind_speed) + " м/с");
 
 
     ui->textEdit_wind_deg->clear();
     ui->textEdit_wind_deg->setFontWeight(QFont::Bold);
     ui->textEdit_wind_deg->setTextColor("green");
     ui->textEdit_wind_deg->setFontPointSize(10);
-    ui->textEdit_wind_deg->append(QString::number(weather1.wind_deg) + "°");
+    ui->textEdit_wind_deg->append(QString::number(weather1.wind_deg) + " °");
 
     ui->textEdit_state->clear();
     ui->textEdit_state->setFontWeight(QFont::Bold);
@@ -226,8 +222,4 @@ void MainWindow::parser_request (QString data){
     }
 
     ui->textEdit_duration->append(unixTimeToHumanReadable(duration));
-
-
-
-
 }
