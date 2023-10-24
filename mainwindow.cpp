@@ -9,7 +9,7 @@
 
 #include <QDebug>
 
-QString version ="V1.2";
+QString version ="V1.3";
 int id=710719;              // Чернівці default
 
 MainWindow::MainWindow(QWidget *parent)
@@ -60,18 +60,40 @@ MainWindow::MainWindow(QWidget *parent)
         ui->comboBox->addItem( "Луганськ"        ,"23");
         ui->comboBox->addItem( "Сімферополь"     ,"24");
 
+        // readt settings from register
+        /* При создании главного окна производим установку начальных параметров
+          * из настроек, сохранённых в операционной системе
+          * */
+        QSettings settings(ORGANIZATION_NAME, APPLICATION_NAME);
+         /* Устанавливаем состояние чекбокса из настроек приложения по заданному ключу.
+            * Если ключ не существует, то будет установлен параметр по умолчанию,
+           * то есть false
+         * */
+        ui->radioButton->setChecked(settings.value(SETTINGS_SummerVinter, false).toBool());
+        ui->comboBox->setCurrentIndex(settings.value(SETTINGS_CITY, 0).toInt());
+        on_comboBox_activated(ui->comboBox->currentIndex());
    }
 
 MainWindow::~MainWindow()
 {
+    //--------- write settings in register -----------------------
+    QSettings settings(ORGANIZATION_NAME, APPLICATION_NAME);
+    if(ui->radioButton->isChecked()){
+        settings.setValue(SETTINGS_SummerVinter, true);
+    } else {
+        settings.setValue(SETTINGS_SummerVinter, false);
+    }
+    settings.sync();
+
+    settings.setValue(SETTINGS_CITY, ui->comboBox->currentIndex());
+    //-------------------------------------------------------------
+
+    qDebug() << "Closed.";
     delete ui;
 }
 
 
 void MainWindow::onGo() {
-
-
-
     // chernivtci
     //QString urlText = "https://api.openweathermap.org/data/2.5/weather?id=710719&appid=184fb9b7d1a763b9eb3214f10ea05a72";
 
@@ -171,7 +193,5 @@ void MainWindow::on_comboBox_activated(int index)
 
         default: id=710719; break;      //"Чернівці"
     }
-
     onGo();
-
 }

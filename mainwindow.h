@@ -5,7 +5,16 @@
 #include <QNetworkReply>
 #include <QNetworkAccessManager>
 #include "extwindow.h"
+#include <QSettings>
 
+
+/* Defining */
+#define ORGANIZATION_NAME "SofiaWeather"
+#define ORGANIZATION_DOMAIN "centroparotjag"
+#define APPLICATION_NAME "QSettings Program"
+
+#define SETTINGS_SummerVinter "settings/SummerVinter"
+#define SETTINGS_CITY "settings/city"
 
 
 QT_BEGIN_NAMESPACE
@@ -43,9 +52,6 @@ public:
 private slots:
     void onGo();
     void onFinished( QNetworkReply* reply );
-
-
-
 
     void on_pushButton_2_clicked();
 
