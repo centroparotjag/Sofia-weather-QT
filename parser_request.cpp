@@ -38,8 +38,8 @@ QString MainWindow::find_data(QString data, QString search){
 
 
 QString MainWindow::what_is_in_the_sky_ParseData(QString data){
-    int skip;
-    int length;
+    int skip=0;
+    int length=0;
     //---------------------------------------------------
     char text [600] = {};
     memcpy(text, data.toStdString().c_str(), data.size());
@@ -69,8 +69,8 @@ QString MainWindow::what_is_in_the_sky_ParseData(QString data){
 }
 
 QString MainWindow::find_city(QString data){
-    int skip;
-    int length;
+    int skip =0;
+    int length=0;
     //---------------------------------------------------
     char text [600] = {};
     memcpy(text, data.toStdString().c_str(), data.size());

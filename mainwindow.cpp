@@ -59,6 +59,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->comboBox->addItem( "Донецьк"         ,"22");
         ui->comboBox->addItem( "Луганськ"        ,"23");
         ui->comboBox->addItem( "Сімферополь"     ,"24");
+        ui->comboBox->addItem( "Мала-Токмачка"   ,"25");
 
         // readt settings from register
         /* При создании главного окна производим установку начальных параметров
@@ -76,17 +77,51 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    //--------- write settings in register -----------------------
     QSettings settings(ORGANIZATION_NAME, APPLICATION_NAME);
-    if(ui->radioButton->isChecked()){
-        settings.setValue(SETTINGS_SummerVinter, true);
-    } else {
-        settings.setValue(SETTINGS_SummerVinter, false);
-    }
-    settings.sync();
 
-    settings.setValue(SETTINGS_CITY, ui->comboBox->currentIndex());
+    if (ui->radioButton->isChecked() != settings.value(SETTINGS_SummerVinter).toBool()){
+        qDebug() << "SETTINGS_SummerVinter є зміни " << ui->radioButton->isChecked()
+                 << "!= " << settings.value(SETTINGS_SummerVinter).toBool();
+        qDebug() << "Write SummerVinters in register ";
+        //--------- write settings in register -----------------------
+        if(ui->radioButton->isChecked()){
+            settings.setValue(SETTINGS_SummerVinter, true);
+        } else {
+            settings.setValue(SETTINGS_SummerVinter, false);
+        }
+        settings.sync();
+    }
+
+
+    if (ui->comboBox->currentIndex() != settings.value(SETTINGS_CITY).toInt()){
+        qDebug() << "SETTINGS_CITY є зміни " << ui->comboBox->currentIndex()
+                 << "!= " <<   settings.value(SETTINGS_CITY).toInt();
+        qDebug() << "Write sity in register ";
+
+        //--------- write settings in register -----------------------
+        settings.setValue(SETTINGS_CITY, ui->comboBox->currentIndex());
+        settings.sync();
+    }
+
+
+
+
+    //--------- write settings in register -----------------------
+
+//    if(ui->radioButton->isChecked()){
+//        settings.setValue(SETTINGS_SummerVinter, true);
+//    } else {
+//        settings.setValue(SETTINGS_SummerVinter, false);
+//    }
+//    settings.sync();
+
+//    settings.setValue(SETTINGS_CITY, ui->comboBox->currentIndex());
     //-------------------------------------------------------------
+
+
+
+//    qDebug() << "SETTINGS_SummerVinter = " << settings.value(SETTINGS_SummerVinter);
+//    qDebug() << "SETTINGS_CITY = " << settings.value(SETTINGS_CITY);
 
     qDebug() << "Closed.";
     delete ui;
@@ -190,6 +225,7 @@ void MainWindow::on_comboBox_activated(int index)
         case 22: id=709717; break;      //"Донецьк"
         case 23: id=702658; break;      //"Луганськ"
         case 24: id=693805; break;      //"Сімферополь"
+        case 25: id=702153; break;      //"Мала-Токмачка"
 
         default: id=710719; break;      //"Чернівці"
     }
