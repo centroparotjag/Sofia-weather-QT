@@ -20,21 +20,16 @@ MainWindow::MainWindow(QWidget *parent)
 
     setWindowTitle(version);
 
-    //connect( ui->pushButton, SIGNAL( clicked( bool ) ), SLOT( on_pushButton_clicked() ) );
+    connect( ui->pushButton, SIGNAL( clicked( bool ) ), SLOT( on_pushButton_clicked() ) );
     connect( ui->radioButton, SIGNAL( clicked( bool ) ), SLOT( onGo() ) );
     connect( ui->comboBox, SIGNAL( clicked( bool ) ), SLOT( onGo() ) );
     connect( &m_manager, SIGNAL( finished( QNetworkReply* ) ), SLOT( onFinished( QNetworkReply* ) ) );
 
 
     timer = new QTimer(this);
-    timer->setInterval(300000);
+    timer->setInterval(600000);         // 300000 = 5min
     connect(timer, SIGNAL(timeout()), this, SLOT(onGo()));
     timer->start();
-
-
-
-
-
 
 
 #ifdef QT_DEBUG     // debug
@@ -42,7 +37,7 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
 
 #ifndef QT_DEBUG    // release
-    ui -> pushButton -> hide();
+   // ui -> pushButton -> hide();
 #endif
 
         ui->comboBox->addItem( "Чернівці"        ,"0");
@@ -115,6 +110,9 @@ MainWindow::~MainWindow()
 
     qDebug() << "Closed.";
     delete ui;
+
+
+
 }
 
 
@@ -144,6 +142,7 @@ void MainWindow::onGo() {
     ui->textEdit->append( "urlText - " + urlText + "\n" );
 
     m_manager.get( QNetworkRequest( QUrl( urlText ) ) );
+    //plot_window.plot_g1(weather_data, count_data);
 }
 
 void MainWindow::onFinished( QNetworkReply* reply ) {
@@ -155,8 +154,9 @@ void MainWindow::onFinished( QNetworkReply* reply ) {
         ui->textEdit->append( data );
 
 //---------------------------------------------------
-
         parser_request (data);
+
+        //qDebug() << "onFinished count data " << count_data;
 
     } else {
         qDebug() << reply->errorString();
@@ -165,8 +165,6 @@ void MainWindow::onFinished( QNetworkReply* reply ) {
 
     reply->deleteLater();
 }
-
-
 
 
 void MainWindow::on_pushButton_2_clicked()
@@ -216,4 +214,7 @@ void MainWindow::on_comboBox_activated(int index)
 void MainWindow::on_pushButton_clicked()
 {
     plot_window.show();
+    //plot_window.plot_g1(weather_data, count_data);
 }
+
+

@@ -17,6 +17,10 @@ public:
 
 private:
     Ui::plot_window *ui;
+
+public:
+    void plot_g1(double (* array)[5] , int count);
+
 };
 
 #endif // PLOT_WINDOW_H

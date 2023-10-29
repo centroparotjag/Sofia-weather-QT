@@ -102,9 +102,10 @@ QString MainWindow::find_city(QString data){
 
 
 
+int count_data = 0;
+double weather_data[cnt_point_plot+1][5] = {0};
 
-
-void MainWindow::parser_request (QString data){
+void MainWindow::parser_request (QString data ){
     weather weather1;
 
     weather1.temp       = find_data(data, "temp").toDouble();
@@ -118,14 +119,33 @@ void MainWindow::parser_request (QString data){
 
     weather1.directional_angle = (double)weather1.wind_deg/6;
 
-    weather_data  [count_data][0] = weather1.temp;
-    weather_data  [count_data][1] = weather1.pressure;
+
+
+
+    weather_data  [count_data][0] = weather1.temp-273.16;
+    weather_data  [count_data][1] = weather1.pressure*0.75;
     weather_data  [count_data][2] = weather1.humidity;
     weather_data  [count_data][3] = weather1.wind_speed;
     weather_data  [count_data][4] = weather1.wind_deg;
+
+
+//    if (count_data>50){         // test
+//        for (int i=0; i<50 ; i++ ) {
+//            weather_data  [i][4] = weather1.wind_deg+20;
+//        }
+//    }
+
+
+    plot_window.plot_g1(weather_data, count_data);
+
     qDebug() << "Count data " << count_data;
+
     count_data++;
 
+
+    if (count_data > cnt_point_plot) {
+        count_data = 0;
+    }
 
 
     //---------------- debug Log -----------------------------
