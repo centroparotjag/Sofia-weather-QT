@@ -5,6 +5,7 @@
 
 QString extern version;
 
+
 QString MainWindow::find_data(QString data, QString search){
     int skip = 0;
     int length = 0;
@@ -116,6 +117,16 @@ void MainWindow::parser_request (QString data){
     weather1.city       = find_city(data);
 
     weather1.directional_angle = (double)weather1.wind_deg/6;
+
+    weather_data  [count_data][0] = weather1.temp;
+    weather_data  [count_data][1] = weather1.pressure;
+    weather_data  [count_data][2] = weather1.humidity;
+    weather_data  [count_data][3] = weather1.wind_speed;
+    weather_data  [count_data][4] = weather1.wind_deg;
+    qDebug() << "Count data " << count_data;
+    count_data++;
+
+
 
     //---------------- debug Log -----------------------------
     ui->textEdit->setTextColor(QColor::fromRgb(0,150,0));

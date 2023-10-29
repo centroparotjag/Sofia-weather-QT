@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui printsupport
 QT       += network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -18,16 +18,21 @@ SOURCES += \
     UNIX_TIME.cpp \
     main.cpp \
     mainwindow.cpp \
+    plot_window.cpp \
+    qcustomplot.cpp \
     second_window.cpp
 
 
 
 HEADERS += \
     mainwindow.h \
+    plot_window.h \
+    qcustomplot.h \
     second_window.h
 
 FORMS += \
     mainwindow.ui \
+    plot_window.ui \
     second_window.ui
 
 RC_FILE = appIcon.rc

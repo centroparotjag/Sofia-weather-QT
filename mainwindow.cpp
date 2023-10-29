@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     setWindowTitle(version);
 
-    //connect( ui->pushButton, SIGNAL( clicked( bool ) ), SLOT( onGo() ) );
+    //connect( ui->pushButton, SIGNAL( clicked( bool ) ), SLOT( on_pushButton_clicked() ) );
     connect( ui->radioButton, SIGNAL( clicked( bool ) ), SLOT( onGo() ) );
     connect( ui->comboBox, SIGNAL( clicked( bool ) ), SLOT( onGo() ) );
     connect( &m_manager, SIGNAL( finished( QNetworkReply* ) ), SLOT( onFinished( QNetworkReply* ) ) );
@@ -30,6 +30,11 @@ MainWindow::MainWindow(QWidget *parent)
     timer->setInterval(300000);
     connect(timer, SIGNAL(timeout()), this, SLOT(onGo()));
     timer->start();
+
+
+
+
+
 
 
 #ifdef QT_DEBUG     // debug
@@ -65,7 +70,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->comboBox->addItem( "Донецьк"         ,"22");
         ui->comboBox->addItem( "Луганськ"        ,"23");
         ui->comboBox->addItem( "Сімферополь"     ,"24");
-        ui->comboBox->addItem( "Мала-Токмачка"   ,"25");
+        ui->comboBox->addItem( "Мала Токмачка"   ,"25");
 
         // readt settings from register
         /* При создании главного окна производим установку начальных параметров
@@ -98,7 +103,6 @@ MainWindow::~MainWindow()
         settings.sync();
     }
 
-
     if (ui->comboBox->currentIndex() != settings.value(SETTINGS_CITY).toInt()){
         qDebug() << "SETTINGS_CITY є зміни " << ui->comboBox->currentIndex()
                  << "!= " <<   settings.value(SETTINGS_CITY).toInt();
@@ -108,26 +112,6 @@ MainWindow::~MainWindow()
         settings.setValue(SETTINGS_CITY, ui->comboBox->currentIndex());
         settings.sync();
     }
-
-
-
-
-    //--------- write settings in register -----------------------
-
-//    if(ui->radioButton->isChecked()){
-//        settings.setValue(SETTINGS_SummerVinter, true);
-//    } else {
-//        settings.setValue(SETTINGS_SummerVinter, false);
-//    }
-//    settings.sync();
-
-//    settings.setValue(SETTINGS_CITY, ui->comboBox->currentIndex());
-    //-------------------------------------------------------------
-
-
-
-//    qDebug() << "SETTINGS_SummerVinter = " << settings.value(SETTINGS_SummerVinter);
-//    qDebug() << "SETTINGS_CITY = " << settings.value(SETTINGS_CITY);
 
     qDebug() << "Closed.";
     delete ui;
@@ -222,9 +206,14 @@ void MainWindow::on_comboBox_activated(int index)
         case 22: id=709717; break;      //"Донецьк"
         case 23: id=702658; break;      //"Луганськ"
         case 24: id=693805; break;      //"Сімферополь"
-        case 25: id=702153; break;      //"Мала-Токмачка"
+        case 25: id=702153; break;      //"Мала Токмачка"
 
         default: id=710719; break;      //"Чернівці"
     }
     onGo();
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    plot_window.show();
 }
