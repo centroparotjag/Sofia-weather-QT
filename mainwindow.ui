@@ -27,10 +27,13 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="pushButton">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>11</x>
-      <y>9</y>
+      <x>340</x>
+      <y>10</y>
       <width>120</width>
       <height>30</height>
      </rect>
@@ -43,7 +46,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Оновити</string>
+     <string>Графік</string>
     </property>
    </widget>
    <widget class="QTextEdit" name="textEdit_time_request">
@@ -89,8 +92,8 @@ p, li { white-space: pre-wrap; }
     </property>
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>9</y>
+      <x>210</x>
+      <y>10</y>
       <width>120</width>
       <height>30</height>
      </rect>
@@ -730,22 +733,6 @@ p, li { white-space: pre-wrap; }
        </widget>
       </widget>
      </widget>
-     <widget class="QPushButton" name="pushButton_3">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>-10</y>
-        <width>171</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Розш. можливості</string>
-      </property>
-     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <property name="enabled">
@@ -778,13 +765,13 @@ p, li { white-space: pre-wrap; }
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(0, 0, 0);
+       <string notr="true">background-color: rgb(200, 200, 200);
 
 color: rgb(186, 186, 186);
 selection-background-color: rgb(76, 76, 76);</string>
       </property>
       <property name="readOnly">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
      </widget>
     </widget>
@@ -792,8 +779,8 @@ selection-background-color: rgb(76, 76, 76);</string>
    <widget class="QComboBox" name="comboBox">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>10</y>
+      <x>10</x>
+      <y>7</y>
       <width>191</width>
       <height>31</height>
      </rect>

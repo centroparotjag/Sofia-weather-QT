@@ -118,7 +118,7 @@ void MainWindow::parser_request (QString data){
     weather1.directional_angle = (double)weather1.wind_deg/6;
 
     //---------------- debug Log -----------------------------
-    ui->textEdit->setTextColor(QColor::fromRgb(0,255,0));
+    ui->textEdit->setTextColor(QColor::fromRgb(0,150,0));
     ui->textEdit->append("\n");
     ui->textEdit->append("temp K = "       + QString::number(weather1.temp));
     ui->textEdit->append("temp C = "       + QString::number(weather1.temp-273.16));
@@ -137,8 +137,7 @@ void MainWindow::parser_request (QString data){
 
     ui->textEdit->append(what_is_in_the_sky_ParseData(data));
 
-    ui->textEdit->append(weather1.city);
-
+    ui->textEdit->append(weather1.city + "\n");
 
     QString ver = version;
     ver.append(" City - ");

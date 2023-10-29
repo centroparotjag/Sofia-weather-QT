@@ -4,8 +4,8 @@
 #include <QMainWindow>
 #include <QNetworkReply>
 #include <QNetworkAccessManager>
-#include "extwindow.h"
 #include <QSettings>
+#include <QDateTime>
 
 
 /* Defining */
@@ -55,14 +55,11 @@ private slots:
 
     void on_pushButton_2_clicked();
 
-    void on_pushButton_3_clicked();
-
     void on_comboBox_activated(int index);
 
 private:
     Ui::MainWindow *ui;
     QNetworkAccessManager m_manager;
-    extWindow *window;
-
+    QTimer *timer;
 };
 #endif // MAINWINDOW_H

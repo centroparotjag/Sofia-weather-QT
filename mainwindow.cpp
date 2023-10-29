@@ -20,18 +20,24 @@ MainWindow::MainWindow(QWidget *parent)
 
     setWindowTitle(version);
 
-    connect( ui->pushButton, SIGNAL( clicked( bool ) ), SLOT( onGo() ) );
+    //connect( ui->pushButton, SIGNAL( clicked( bool ) ), SLOT( onGo() ) );
     connect( ui->radioButton, SIGNAL( clicked( bool ) ), SLOT( onGo() ) );
     connect( ui->comboBox, SIGNAL( clicked( bool ) ), SLOT( onGo() ) );
     connect( &m_manager, SIGNAL( finished( QNetworkReply* ) ), SLOT( onFinished( QNetworkReply* ) ) );
 
-#ifdef QT_DEBUG     // release
+
+    timer = new QTimer(this);
+    timer->setInterval(300000);
+    connect(timer, SIGNAL(timeout()), this, SLOT(onGo()));
+    timer->start();
+
+
+#ifdef QT_DEBUG     // debug
 
 #endif
 
-#ifndef QT_DEBUG    // debug
-    //    ui->pushButton_3->setEnabled(true);
-        ui->pushButton_3->hide();
+#ifndef QT_DEBUG    // release
+    ui -> pushButton -> hide();
 #endif
 
         ui->comboBox->addItem( "Чернівці"        ,"0");
@@ -147,7 +153,7 @@ void MainWindow::onGo() {
 
     //ui->textEdit->clear();  //format.setFontWeight(QFont::Bold);
     ui->textEdit->setFontWeight(QFont::Bold);
-    ui->textEdit->setTextColor(QColor::fromRgb(99,184,255));         // QColor::fromRgb(0,20,50)
+    ui->textEdit->setTextColor(QColor::fromRgb(29,4,255));         // QColor::fromRgb(0,20,50)
     ui->textEdit->append( "********************************************************************" );
     ui->textEdit->append( "********************************************************************");
     ui->textEdit->append(QDateTime::currentDateTime().toString("dd.MM.yyyy HH:mm:ss") + "\n");
@@ -159,9 +165,9 @@ void MainWindow::onGo() {
 void MainWindow::onFinished( QNetworkReply* reply ) {
     if( reply->error() == QNetworkReply::NoError ) {
         QString data = QString::fromUtf8( reply->readAll() );
-        ui->textEdit->setTextColor(QColor::fromRgb(255,69,0));
+        ui->textEdit->setTextColor(QColor::fromRgb(200,0,0));
         ui->textEdit->append("XML request:");
-        ui->textEdit->setTextColor(QColor::fromRgb(255,99,71));
+        ui->textEdit->setTextColor(QColor::fromRgb(200,0,0));
         ui->textEdit->append( data );
 
 //---------------------------------------------------
@@ -184,17 +190,8 @@ void MainWindow::on_pushButton_2_clicked()
     Second_window window;
     window.setModal(true);
     window.exec();
-    onGo();
 }
 
-
-
-void MainWindow::on_pushButton_3_clicked()
-{
-    //hide();
-    window = new extWindow(this);
-    window->show();
-}
 
 void MainWindow::on_comboBox_activated(int index)
 {

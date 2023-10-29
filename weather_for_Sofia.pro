@@ -16,7 +16,6 @@ QMAKE_LFLAGS += -static -static-libgcc -static-libstdc++
 SOURCES += \
     Parser_request.cpp \
     UNIX_TIME.cpp \
-    extwindow.cpp \
     main.cpp \
     mainwindow.cpp \
     second_window.cpp
@@ -24,12 +23,10 @@ SOURCES += \
 
 
 HEADERS += \
-    extwindow.h \
     mainwindow.h \
     second_window.h
 
 FORMS += \
-    extwindow.ui \
     mainwindow.ui \
     second_window.ui
 
