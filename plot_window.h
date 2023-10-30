@@ -2,6 +2,8 @@
 #define PLOT_WINDOW_H
 
 #include <QWidget>
+#include <QFileDialog>
+
 
 namespace Ui {
 class plot_window;

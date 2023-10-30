@@ -9,7 +9,7 @@
 
 #include <QDebug>
 
-QString version ="V1.3";
+QString version ="V2.0 Plot. ";
 int id=710719;              // Чернівці default
 
 MainWindow::MainWindow(QWidget *parent)
@@ -20,14 +20,14 @@ MainWindow::MainWindow(QWidget *parent)
 
     setWindowTitle(version);
 
-    connect( ui->pushButton, SIGNAL( clicked( bool ) ), SLOT( on_pushButton_clicked() ) );
+    //connect( ui->pushButton, SIGNAL( clicked( bool ) ), SLOT( on_pushButton_clicked() ) );
     connect( ui->radioButton, SIGNAL( clicked( bool ) ), SLOT( onGo() ) );
     connect( ui->comboBox, SIGNAL( clicked( bool ) ), SLOT( onGo() ) );
     connect( &m_manager, SIGNAL( finished( QNetworkReply* ) ), SLOT( onFinished( QNetworkReply* ) ) );
 
 
     timer = new QTimer(this);
-    timer->setInterval(600000);         // 300000 = 5min
+    timer->setInterval(300000);         // 300000 = 5min  3600000=1h
     connect(timer, SIGNAL(timeout()), this, SLOT(onGo()));
     timer->start();
 
@@ -152,15 +152,13 @@ void MainWindow::onFinished( QNetworkReply* reply ) {
         ui->textEdit->append("XML request:");
         ui->textEdit->setTextColor(QColor::fromRgb(200,0,0));
         ui->textEdit->append( data );
-
-//---------------------------------------------------
         parser_request (data);
 
-        //qDebug() << "onFinished count data " << count_data;
-
+        timer->setInterval(300000);         // 300000 = 5min  3600000=1h
     } else {
-        qDebug() << reply->errorString();
+        qDebug() << "Not answer " << reply->errorString();
         ui->textEdit->append( reply->errorString() );
+        timer->setInterval(1000);         // 300000 = 5min  3600000=1h
     }
 
     reply->deleteLater();

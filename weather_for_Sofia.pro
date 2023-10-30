@@ -22,8 +22,6 @@ SOURCES += \
     qcustomplot.cpp \
     second_window.cpp
 
-
-
 HEADERS += \
     mainwindow.h \
     plot_window.h \
@@ -36,7 +34,6 @@ FORMS += \
     second_window.ui
 
 RC_FILE = appIcon.rc
-
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

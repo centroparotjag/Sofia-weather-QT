@@ -100,10 +100,9 @@ QString MainWindow::find_city(QString data){
     return result;
 }
 
-
-
 int count_data = 0;
 double weather_data[cnt_point_plot+1][5] = {0};
+int last_update_hour = 55;
 
 void MainWindow::parser_request (QString data ){
     weather weather1;
@@ -119,34 +118,30 @@ void MainWindow::parser_request (QString data ){
 
     weather1.directional_angle = (double)weather1.wind_deg/6;
 
+    QTime ct = QTime::currentTime();
+    qDebug() << ct.toString("hh:mm:ss");
+    int hour = ct.toString("h").toInt();
+    int min = ct.toString("m").toInt();
+    qDebug() << "hour " << hour<< ", min " << min;
 
-
-
-    weather_data  [count_data][0] = weather1.temp-273.16;
-    weather_data  [count_data][1] = weather1.pressure*0.75;
-    weather_data  [count_data][2] = weather1.humidity;
-    weather_data  [count_data][3] = weather1.wind_speed;
-    weather_data  [count_data][4] = weather1.wind_deg;
-
-
-//    if (count_data>50){         // test
-//        for (int i=0; i<50 ; i++ ) {
-//            weather_data  [i][4] = weather1.wind_deg+20;
-//        }
-//    }
-
-
-    plot_window.plot_g1(weather_data, count_data);
+    //------ Plot updates every hour --------------------------
+    if (last_update_hour != hour && weather1.pressure != 0 && weather1.humidity != 0){
+        weather_data  [count_data][0] = weather1.temp-273.16;
+        weather_data  [count_data][1] = weather1.pressure*0.75;
+        weather_data  [count_data][2] = weather1.humidity;
+        weather_data  [count_data][3] = weather1.wind_speed;
+        weather_data  [count_data][4] = weather1.wind_deg;
+        plot_window.plot_g1(weather_data, count_data);
+        count_data++;
+        last_update_hour = hour;
+    }
 
     qDebug() << "Count data " << count_data;
-
-    count_data++;
-
 
     if (count_data > cnt_point_plot) {
         count_data = 0;
     }
-
+    //--------------------------------------------------------
 
     //---------------- debug Log -----------------------------
     ui->textEdit->setTextColor(QColor::fromRgb(0,150,0));

@@ -8,6 +8,8 @@
 #include <QDateTime>
 #include <plot_window.h>
 #include <QVector>
+#include <QFileDialog>
+
 
 
 /* Defining */
@@ -18,7 +20,7 @@
 #define SETTINGS_SummerVinter "settings/SummerVinter"
 #define SETTINGS_CITY "settings/city"
 
-#define cnt_point_plot 144
+#define cnt_point_plot 50
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
