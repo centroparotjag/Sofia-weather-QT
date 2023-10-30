@@ -20,7 +20,7 @@
 #define SETTINGS_SummerVinter "settings/SummerVinter"
 #define SETTINGS_CITY "settings/city"
 
-#define cnt_point_plot 50
+#define cnt_point_plot 72
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

@@ -17,10 +17,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
     setWindowTitle(version);
 
-    //connect( ui->pushButton, SIGNAL( clicked( bool ) ), SLOT( on_pushButton_clicked() ) );
+    connect( ui->pushButton, SIGNAL( clicked( bool ) ), SLOT( on_pushButton_clicked() ) );
     connect( ui->radioButton, SIGNAL( clicked( bool ) ), SLOT( onGo() ) );
     connect( ui->comboBox, SIGNAL( clicked( bool ) ), SLOT( onGo() ) );
     connect( &m_manager, SIGNAL( finished( QNetworkReply* ) ), SLOT( onFinished( QNetworkReply* ) ) );
@@ -109,10 +108,8 @@ MainWindow::~MainWindow()
     }
 
     qDebug() << "Closed.";
+
     delete ui;
-
-
-
 }
 
 

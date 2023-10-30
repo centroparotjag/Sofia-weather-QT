@@ -104,6 +104,8 @@ int count_data = 0;
 double weather_data[cnt_point_plot+1][5] = {0};
 int last_update_hour = 55;
 
+int test = 0;
+
 void MainWindow::parser_request (QString data ){
     weather weather1;
 
@@ -132,15 +134,22 @@ void MainWindow::parser_request (QString data ){
         weather_data  [count_data][3] = weather1.wind_speed;
         weather_data  [count_data][4] = weather1.wind_deg;
         plot_window.plot_g1(weather_data, count_data);
+
+        //------------ TEST -------------
+        qDebug() << "weather_data  ["<<count_data<<"][0] = " << weather_data  [count_data][0];
+        //------------ TEST -------------
+
         count_data++;
         last_update_hour = hour;
     }
 
     qDebug() << "Count data " << count_data;
 
-    if (count_data > cnt_point_plot) {
-        count_data = 0;
+    if(count_data > cnt_point_plot){
+        //count_data = 0;
+        count_data = cnt_point_plot;
     }
+
     //--------------------------------------------------------
 
     //---------------- debug Log -----------------------------

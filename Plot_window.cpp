@@ -2,6 +2,8 @@
 #include <ui_plot_window.h>
 #include "mainwindow.h"
 
+int skale_min = 0;
+
 plot_window::plot_window(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::plot_window)
@@ -17,7 +19,7 @@ plot_window::plot_window(QWidget *parent) :
     ui->temp->axisRect()->setRangeDrag(Qt::Vertical);   // Включаем перетаскивание только по Vertical оси
     ui->temp->axisRect()->setRangeZoom(Qt::Vertical);   // Включаем удаление/приближение только по Vertical оси
     //ui->temp->xAxis->setLabel("Години");
-    ui->temp->xAxis->setRange(0, cnt_point_plot);
+    ui->temp->xAxis->setRange(skale_min, cnt_point_plot);
     ui->temp->yAxis->setLabel("Темп. (℃)");
     ui->temp->yAxis->setRange(-25, +35);
 
@@ -30,7 +32,7 @@ plot_window::plot_window(QWidget *parent) :
     ui->speedwind->axisRect()->setRangeDrag(Qt::Vertical);   // Включаем перетаскивание только по Vertical оси
     ui->speedwind->axisRect()->setRangeZoom(Qt::Vertical);   // Включаем удаление/приближение только по Vertical оси
     //ui->speedwind->xAxis->setLabel("Години");
-    ui->speedwind->xAxis->setRange(0, cnt_point_plot);
+    ui->speedwind->xAxis->setRange(skale_min, cnt_point_plot);
     ui->speedwind->yAxis->setLabel("Шв. вітру (м/с)");
     ui->speedwind->yAxis->setRange(0, 15);
 
@@ -42,7 +44,7 @@ plot_window::plot_window(QWidget *parent) :
     ui->deflWind->axisRect()->setRangeDrag(Qt::Vertical);   // Включаем перетаскивание только по Vertical оси
     ui->deflWind->axisRect()->setRangeZoom(Qt::Vertical);   // Включаем удаление/приближение только по Vertical оси
     //ui->deflWind->xAxis->setLabel("Години");
-    ui->deflWind->xAxis->setRange(0, cnt_point_plot);
+    ui->deflWind->xAxis->setRange(skale_min, cnt_point_plot);
     ui->deflWind->yAxis->setLabel("Напр. вітру (°)");
     ui->deflWind->yAxis->setRange(0, 360);
 
@@ -55,7 +57,7 @@ plot_window::plot_window(QWidget *parent) :
     ui->pressure->axisRect()->setRangeDrag(Qt::Vertical);   // Включаем перетаскивание только по Vertical оси
     ui->pressure->axisRect()->setRangeZoom(Qt::Vertical);   // Включаем удаление/приближение только по Vertical оси
     //ui->pressure->xAxis->setLabel("Години");
-    ui->pressure->xAxis->setRange(0, cnt_point_plot);
+    ui->pressure->xAxis->setRange(skale_min, cnt_point_plot);
     ui->pressure->yAxis->setLabel("Тиск (мм.рт.ст.)");
     ui->pressure->yAxis->setRange(705, 805);
 
@@ -68,7 +70,7 @@ plot_window::plot_window(QWidget *parent) :
     ui->humidity->axisRect()->setRangeDrag(Qt::Vertical);   // Включаем перетаскивание только по Vertical оси
     ui->humidity->axisRect()->setRangeZoom(Qt::Vertical);   // Включаем удаление/приближение только по Vertical оси
     //ui->humidity->xAxis->setLabel("Години");
-    ui->humidity->xAxis->setRange(0, cnt_point_plot);
+    ui->humidity->xAxis->setRange(skale_min, cnt_point_plot);
     ui->humidity->yAxis->setLabel("Відн. вол. (%)");
     ui->humidity->yAxis->setRange(20, 100);
 
@@ -82,14 +84,13 @@ plot_window::~plot_window()
 
 void plot_window::plot_g1(double (* array)[5] , int count){
 
-    for (int i=0; i < count; i++) {
-        ui->temp->     graph(0)->addData( i, array [i][0]);
-        ui->speedwind->graph(0)->addData( i, array [i][3]);
-        ui->deflWind-> graph(0)->addData( i, array [i][4]);
-        ui->pressure-> graph(0)->addData( i, array [i][1]);
-        ui->humidity-> graph(0)->addData( i, array [i][2]);
+    for (int i=0; i < count+1; i++) {
+        ui->temp->     graph(0)->addData(i, array [i][0]);
+        ui->speedwind->graph(0)->addData(i, array [i][3]);
+        ui->deflWind-> graph(0)->addData(i, array [i][4]);
+        ui->pressure-> graph(0)->addData(i, array [i][1]);
+        ui->humidity-> graph(0)->addData(i, array [i][2]);
     }
-
     ui->temp->replot();
     ui->speedwind->replot();
     ui->deflWind->replot();
