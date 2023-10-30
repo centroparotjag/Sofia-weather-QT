@@ -84,6 +84,7 @@ plot_window::~plot_window()
 
 void plot_window::plot_g1(double (* array)[5] , int count){
 
+
     for (int i=0; i < count+1; i++) {
         ui->temp->     graph(0)->addData(i, array [i][0]);
         ui->speedwind->graph(0)->addData(i, array [i][3]);

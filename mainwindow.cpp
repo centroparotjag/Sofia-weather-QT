@@ -9,7 +9,7 @@
 
 #include <QDebug>
 
-QString version ="V2.0 Plot. ";
+QString version ="V2.1 Plot. ";
 int id=710719;              // Чернівці default
 
 MainWindow::MainWindow(QWidget *parent)
@@ -66,7 +66,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->comboBox->addItem( "Сімферополь"     ,"24");
         ui->comboBox->addItem( "Мала Токмачка"   ,"25");
 
-        // readt settings from register
+        // read settings from register
         /* При создании главного окна производим установку начальных параметров
           * из настроек, сохранённых в операционной системе
           * */
@@ -122,14 +122,6 @@ void MainWindow::onGo() {
 
     qDebug() << "Working...";
 
-    //------ Print data update time ----------
-    ui->textEdit_time_request->clear();
-    ui->textEdit_time_request->setFontWeight(QFont::Bold);
-    ui->textEdit_time_request->setTextColor(QColor::fromRgb(0, 0, 0));
-    ui->textEdit_time_request->setFontPointSize(10);
-    ui->textEdit_time_request->append(QDateTime::currentDateTime().toString("HH:mm:ss dd.MM.yyyy"));
-
-
     //ui->textEdit->clear();  //format.setFontWeight(QFont::Bold);
     ui->textEdit->setFontWeight(QFont::Bold);
     ui->textEdit->setTextColor(QColor::fromRgb(29,4,255));         // QColor::fromRgb(0,20,50)
@@ -139,11 +131,19 @@ void MainWindow::onGo() {
     ui->textEdit->append( "urlText - " + urlText + "\n" );
 
     m_manager.get( QNetworkRequest( QUrl( urlText ) ) );
-    //plot_window.plot_g1(weather_data, count_data);
 }
 
 void MainWindow::onFinished( QNetworkReply* reply ) {
     if( reply->error() == QNetworkReply::NoError ) {
+
+        //------ Print data update time ----------
+        ui->textEdit_time_request->clear();
+        ui->textEdit_time_request->setFontPointSize(10);
+        ui->textEdit_time_request->setFontWeight(QFont::Bold);
+        ui->textEdit_time_request->setTextColor(QColor::fromRgb(0, 0, 0));
+        ui->textEdit_time_request->append("Оновлено " +QDateTime::currentDateTime().toString("HH:mm:ss dd.MM.yyyy"));
+
+
         QString data = QString::fromUtf8( reply->readAll() );
         ui->textEdit->setTextColor(QColor::fromRgb(200,0,0));
         ui->textEdit->append("XML request:");
@@ -209,7 +209,6 @@ void MainWindow::on_comboBox_activated(int index)
 void MainWindow::on_pushButton_clicked()
 {
     plot_window.show();
-    //plot_window.plot_g1(weather_data, count_data);
 }
 
 
