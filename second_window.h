@@ -15,8 +15,11 @@ public:
     explicit Second_window(QWidget *parent = nullptr);
     ~Second_window();
 
+
 private:
     Ui::Second_window *ui;
 };
+
+
 
 #endif // SECOND_WINDOW_H

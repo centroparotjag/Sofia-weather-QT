@@ -1,9 +1,12 @@
 #include "mainwindow.h"
 #include <QDebug>
+#include "mainwindow.h"
+#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <cstring>
 
 QString extern version;
+
 
 QString MainWindow::find_data(QString data, QString search){
     int skip = 0;
@@ -99,15 +102,16 @@ QString MainWindow::find_city(QString data){
     return result;
 }
 
+uint count_data = 0;
+int last_update_hour = 55;
+//int test = 0;
 
-
-
-
-void MainWindow::parser_request (QString data){
+void MainWindow::parser_request (QString data ){
     weather weather1;
 
     weather1.temp       = find_data(data, "temp").toDouble();
     weather1.pressure   = find_data(data, "pressure").toInt();
+    uint grnd_level     = find_data(data, "grnd_level").toInt();
     weather1.humidity   = find_data(data, "humidity").toInt();
     weather1.wind_speed = find_data(data, "wind").toDouble();
     weather1.wind_deg   = find_data(data, "deg").toInt();
@@ -117,13 +121,42 @@ void MainWindow::parser_request (QString data){
 
     weather1.directional_angle = (double)weather1.wind_deg/6;
 
+    QTime ct = QTime::currentTime();
+    qDebug() << ct.toString("hh:mm:ss");
+    int hour = ct.toString("h").toInt();
+    int min = ct.toString("m").toInt();
+    qDebug() << "hour " << hour<< ", min " << min;
+
+    //------ Plot updates every hour --------------------------
+    if (last_update_hour != hour && weather1.pressure != 0 && weather1.humidity != 0){
+
+//        test++;
+//        weather1.temp      =weather1.temp      +test;
+//        weather1.pressure  =weather1.pressure  +test;
+//        weather1.humidity  =weather1.humidity  +test;
+//        weather1.wind_speed=weather1.wind_speed+test;
+//        weather1.wind_deg  =weather1.wind_deg  +test;
+
+        plot_window.plot_g1(weather1.temp-273.16, weather1.wind_speed, weather1.wind_deg,
+                            weather1.pressure*0.75, weather1.humidity, count_data);
+
+        count_data++;
+        last_update_hour = hour;
+    }
+
+    qDebug() << "Count data " << count_data;
+
+    //--------------------------------------------------------
+
     //---------------- debug Log -----------------------------
-    ui->textEdit->setTextColor(QColor::fromRgb(0,255,0));
+    ui->textEdit->setTextColor(QColor::fromRgb(0,150,0));
     ui->textEdit->append("\n");
     ui->textEdit->append("temp K = "       + QString::number(weather1.temp));
     ui->textEdit->append("temp C = "       + QString::number(weather1.temp-273.16));
-    ui->textEdit->append("pressure hPa = "  + QString::number(weather1.pressure));
-    ui->textEdit->append("pressure mmHg = " + QString::number((double)weather1.pressure*0.75));
+    ui->textEdit->append("pressure hPa (Sea level) = "  + QString::number(weather1.pressure));
+    ui->textEdit->append("pressure mmHg (Sea level) = " + QString::number((double)weather1.pressure*0.75));
+    ui->textEdit->append("pressure hPa (Grnd level) = "  + QString::number(grnd_level));
+    ui->textEdit->append("pressure mmHg (Grnd level) = " + QString::number((double)grnd_level*0.75));
     ui->textEdit->append("humidity % = "   + QString::number(weather1.humidity));
     ui->textEdit->append("wind_speed m/s= " + QString::number(weather1.wind_speed));
     ui->textEdit->append("wind_deg = "   + QString::number(weather1.wind_deg));
@@ -137,8 +170,7 @@ void MainWindow::parser_request (QString data){
 
     ui->textEdit->append(what_is_in_the_sky_ParseData(data));
 
-    ui->textEdit->append(weather1.city);
-
+    ui->textEdit->append(weather1.city + "\n");
 
     QString ver = version;
     ver.append(" City - ");
@@ -171,8 +203,8 @@ void MainWindow::parser_request (QString data){
     ui->textEdit_pressure->clear();
     ui->textEdit_pressure->setFontWeight(QFont::Bold);
     ui->textEdit_pressure->setTextColor("green");
-    ui->textEdit_pressure->setFontPointSize(10);
-    ui->textEdit_pressure->append(QString::number(weather1.pressure*0.750) + " мм рт.ст.");
+    ui->textEdit_pressure->setFontPointSize(9);
+    ui->textEdit_pressure->append(QString::number(weather1.pressure*0.750) + " мм рт.ст. " + QString::number(grnd_level*0.75) + " (РЗ)");   //grnd_level*0.75
 
     ui->textEdit_wind->clear();
     ui->textEdit_wind->setFontWeight(QFont::Bold);
@@ -223,3 +255,4 @@ void MainWindow::parser_request (QString data){
 
     ui->textEdit_duration->append(unixTimeToHumanReadable(duration));
 }
+

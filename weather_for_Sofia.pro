@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui printsupport
 QT       += network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -16,25 +16,24 @@ QMAKE_LFLAGS += -static -static-libgcc -static-libstdc++
 SOURCES += \
     Parser_request.cpp \
     UNIX_TIME.cpp \
-    extwindow.cpp \
     main.cpp \
     mainwindow.cpp \
+    plot_window.cpp \
+    qcustomplot.cpp \
     second_window.cpp
 
-
-
 HEADERS += \
-    extwindow.h \
     mainwindow.h \
+    plot_window.h \
+    qcustomplot.h \
     second_window.h
 
 FORMS += \
-    extwindow.ui \
     mainwindow.ui \
+    plot_window.ui \
     second_window.ui
 
 RC_FILE = appIcon.rc
-
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -4,8 +4,12 @@
 #include <QMainWindow>
 #include <QNetworkReply>
 #include <QNetworkAccessManager>
-#include "extwindow.h"
 #include <QSettings>
+#include <QDateTime>
+#include <plot_window.h>
+#include <QVector>
+#include <QFileDialog>
+
 
 
 /* Defining */
@@ -16,6 +20,7 @@
 #define SETTINGS_SummerVinter "settings/SummerVinter"
 #define SETTINGS_CITY "settings/city"
 
+#define cnt_point_plot 24  // видима область осі - X в годинах.
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -55,14 +60,17 @@ private slots:
 
     void on_pushButton_2_clicked();
 
-    void on_pushButton_3_clicked();
-
     void on_comboBox_activated(int index);
+
+    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;
     QNetworkAccessManager m_manager;
-    extWindow *window;
+    QTimer *timer;
+
+public:
+    plot_window plot_window;
 
 };
 #endif // MAINWINDOW_H

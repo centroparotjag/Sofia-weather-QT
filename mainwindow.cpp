@@ -9,7 +9,7 @@
 
 #include <QDebug>
 
-QString version ="V1.3";
+QString version ="V2.1.1 Plot. ";
 int id=710719;              // Чернівці default
 
 MainWindow::MainWindow(QWidget *parent)
@@ -17,21 +17,26 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
     setWindowTitle(version);
 
-    connect( ui->pushButton, SIGNAL( clicked( bool ) ), SLOT( onGo() ) );
+    connect( ui->pushButton, SIGNAL( clicked( bool ) ), SLOT( on_pushButton_clicked() ) );
     connect( ui->radioButton, SIGNAL( clicked( bool ) ), SLOT( onGo() ) );
     connect( ui->comboBox, SIGNAL( clicked( bool ) ), SLOT( onGo() ) );
     connect( &m_manager, SIGNAL( finished( QNetworkReply* ) ), SLOT( onFinished( QNetworkReply* ) ) );
 
-#ifdef QT_DEBUG     // release
+
+    timer = new QTimer(this);
+    timer->setInterval(300000);         // 300000 = 5min  3600000=1h
+    connect(timer, SIGNAL(timeout()), this, SLOT(onGo()));
+    timer->start();
+
+
+#ifdef QT_DEBUG     // debug
 
 #endif
 
-#ifndef QT_DEBUG    // debug
-    //    ui->pushButton_3->setEnabled(true);
-        ui->pushButton_3->hide();
+#ifndef QT_DEBUG    // release
+   // ui -> pushButton -> hide();
 #endif
 
         ui->comboBox->addItem( "Чернівці"        ,"0");
@@ -59,9 +64,9 @@ MainWindow::MainWindow(QWidget *parent)
         ui->comboBox->addItem( "Донецьк"         ,"22");
         ui->comboBox->addItem( "Луганськ"        ,"23");
         ui->comboBox->addItem( "Сімферополь"     ,"24");
-        ui->comboBox->addItem( "Мала-Токмачка"   ,"25");
+        ui->comboBox->addItem( "Мала Токмачка"   ,"25");
 
-        // readt settings from register
+        // read settings from register
         /* При создании главного окна производим установку начальных параметров
           * из настроек, сохранённых в операционной системе
           * */
@@ -73,6 +78,29 @@ MainWindow::MainWindow(QWidget *parent)
         ui->radioButton->setChecked(settings.value(SETTINGS_SummerVinter, false).toBool());
         ui->comboBox->setCurrentIndex(settings.value(SETTINGS_CITY, 0).toInt());
         on_comboBox_activated(ui->comboBox->currentIndex());
+
+
+        ui->pushButton->setToolTip("Виведення графіків змін метеоданних.\n"
+                                    "Накопичення данних відбувається від моменту запуску програми до її закриття.\n"
+                                    "Оновлення метеоданних на графіку відбувається з періодичністю в 1 год.\n"
+                                    "Оновлення метеоданних в основному вікні відбувається з періодичністю в 5хв.");
+        ui->pushButton_2->setToolTip("Сюрприз для Софійки і не тільки...))");
+        ui->radioButton->setToolTip("Встановлює часовий пояс літо/зима. \n"
+                                    "Використовується для коректного відображення часу - сходу/заходу сонця.");
+        ui->comboBox->setToolTip   ("Вибір населенного пункту для відображення погоди.\n"
+                                    "В списку всі обласні центри України.");
+
+        ui->textEdit_time_request->setToolTip("Відображення часу крайнього оновлення метеоданних головного вікна.\n"
+                                              "Період оновлення метеоданних становить 5хв.");
+
+
+        ui->textEdit_temperatura->setToolTip("Відображення температури в градусах цельсія.");
+        ui->textEdit_humidity->setToolTip   ("Відображення відносної вологості у відсотках.");
+        ui->textEdit_pressure->setToolTip   ("Відображення атмосферного тиску на рівні моря в міліметрах ртутного стовпа.\n"
+                                             "Відображення атмосферного тиску на рівні землі -РЗ.");
+        ui->textEdit_wind->setToolTip   ("Відображення сили вітру в метрах за секунду.");
+        ui->textEdit_wind_deg->setToolTip   ("Відображення напрямку вітру в градусах (360°).");
+        ui->textEdit_state->setToolTip      ("Відображення станну неба: ясно, хмарно, дощь ...");
    }
 
 MainWindow::~MainWindow()
@@ -92,7 +120,6 @@ MainWindow::~MainWindow()
         settings.sync();
     }
 
-
     if (ui->comboBox->currentIndex() != settings.value(SETTINGS_CITY).toInt()){
         qDebug() << "SETTINGS_CITY є зміни " << ui->comboBox->currentIndex()
                  << "!= " <<   settings.value(SETTINGS_CITY).toInt();
@@ -103,27 +130,8 @@ MainWindow::~MainWindow()
         settings.sync();
     }
 
-
-
-
-    //--------- write settings in register -----------------------
-
-//    if(ui->radioButton->isChecked()){
-//        settings.setValue(SETTINGS_SummerVinter, true);
-//    } else {
-//        settings.setValue(SETTINGS_SummerVinter, false);
-//    }
-//    settings.sync();
-
-//    settings.setValue(SETTINGS_CITY, ui->comboBox->currentIndex());
-    //-------------------------------------------------------------
-
-
-
-//    qDebug() << "SETTINGS_SummerVinter = " << settings.value(SETTINGS_SummerVinter);
-//    qDebug() << "SETTINGS_CITY = " << settings.value(SETTINGS_CITY);
-
     qDebug() << "Closed.";
+
     delete ui;
 }
 
@@ -137,46 +145,48 @@ void MainWindow::onGo() {
 
     qDebug() << "Working...";
 
-    //------ Print data update time ----------
-    ui->textEdit_time_request->clear();
-    ui->textEdit_time_request->setFontWeight(QFont::Bold);
-    ui->textEdit_time_request->setTextColor(QColor::fromRgb(0, 0, 0));
-    ui->textEdit_time_request->setFontPointSize(10);
-    ui->textEdit_time_request->append(QDateTime::currentDateTime().toString("HH:mm:ss dd.MM.yyyy"));
-
-
     //ui->textEdit->clear();  //format.setFontWeight(QFont::Bold);
     ui->textEdit->setFontWeight(QFont::Bold);
-    ui->textEdit->setTextColor(QColor::fromRgb(99,184,255));         // QColor::fromRgb(0,20,50)
+    ui->textEdit->setTextColor(QColor::fromRgb(29,4,255));         // QColor::fromRgb(0,20,50)
     ui->textEdit->append( "********************************************************************" );
     ui->textEdit->append( "********************************************************************");
     ui->textEdit->append(QDateTime::currentDateTime().toString("dd.MM.yyyy HH:mm:ss") + "\n");
     ui->textEdit->append( "urlText - " + urlText + "\n" );
+
+//    ui->textEdit_time_request->clear();
+//    ui->textEdit_time_request->setFontPointSize(10);
+//    ui->textEdit_time_request->setFontWeight(QFont::Bold);
+//    ui->textEdit_time_request->setTextColor(QColor::fromRgb(200, 0, 0));
+//    ui->textEdit_time_request->append("Оновлення данних");
 
     m_manager.get( QNetworkRequest( QUrl( urlText ) ) );
 }
 
 void MainWindow::onFinished( QNetworkReply* reply ) {
     if( reply->error() == QNetworkReply::NoError ) {
+
+        //------ Print data update time ----------
+        ui->textEdit_time_request->clear();
+        ui->textEdit_time_request->setFontPointSize(10);
+        ui->textEdit_time_request->setFontWeight(QFont::Bold);
+        ui->textEdit_time_request->setTextColor(QColor::fromRgb(0, 0, 0));
+        ui->textEdit_time_request->append("Оновлено " +QDateTime::currentDateTime().toString("HH:mm:ss dd.MM.yyyy"));
+
         QString data = QString::fromUtf8( reply->readAll() );
-        ui->textEdit->setTextColor(QColor::fromRgb(255,69,0));
+        ui->textEdit->setTextColor(QColor::fromRgb(200,0,0));
         ui->textEdit->append("XML request:");
-        ui->textEdit->setTextColor(QColor::fromRgb(255,99,71));
+        ui->textEdit->setTextColor(QColor::fromRgb(200,0,0));
         ui->textEdit->append( data );
-
-//---------------------------------------------------
-
         parser_request (data);
 
+        timer->setInterval(300000);         // 300000 = 5min  3600000=1h
     } else {
-        qDebug() << reply->errorString();
+        qDebug() << "Not answer " << reply->errorString();
         ui->textEdit->append( reply->errorString() );
+        timer->setInterval(1000);         // 300000 = 5min  3600000=1h
     }
-
     reply->deleteLater();
 }
-
-
 
 
 void MainWindow::on_pushButton_2_clicked()
@@ -184,17 +194,8 @@ void MainWindow::on_pushButton_2_clicked()
     Second_window window;
     window.setModal(true);
     window.exec();
-    onGo();
 }
 
-
-
-void MainWindow::on_pushButton_3_clicked()
-{
-    //hide();
-    window = new extWindow(this);
-    window->show();
-}
 
 void MainWindow::on_comboBox_activated(int index)
 {
@@ -225,9 +226,16 @@ void MainWindow::on_comboBox_activated(int index)
         case 22: id=709717; break;      //"Донецьк"
         case 23: id=702658; break;      //"Луганськ"
         case 24: id=693805; break;      //"Сімферополь"
-        case 25: id=702153; break;      //"Мала-Токмачка"
+        case 25: id=702153; break;      //"Мала Токмачка"
 
         default: id=710719; break;      //"Чернівці"
     }
     onGo();
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    plot_window.show();
+}
+
+
