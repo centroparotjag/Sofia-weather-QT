@@ -111,6 +111,7 @@ void MainWindow::parser_request (QString data ){
 
     weather1.temp       = find_data(data, "temp").toDouble();
     weather1.pressure   = find_data(data, "pressure").toInt();
+    uint grnd_level     = find_data(data, "grnd_level").toInt();
     weather1.humidity   = find_data(data, "humidity").toInt();
     weather1.wind_speed = find_data(data, "wind").toDouble();
     weather1.wind_deg   = find_data(data, "deg").toInt();
@@ -152,8 +153,10 @@ void MainWindow::parser_request (QString data ){
     ui->textEdit->append("\n");
     ui->textEdit->append("temp K = "       + QString::number(weather1.temp));
     ui->textEdit->append("temp C = "       + QString::number(weather1.temp-273.16));
-    ui->textEdit->append("pressure hPa = "  + QString::number(weather1.pressure));
-    ui->textEdit->append("pressure mmHg = " + QString::number((double)weather1.pressure*0.75));
+    ui->textEdit->append("pressure hPa (Sea level) = "  + QString::number(weather1.pressure));
+    ui->textEdit->append("pressure mmHg (Sea level) = " + QString::number((double)weather1.pressure*0.75));
+    ui->textEdit->append("pressure hPa (Grnd level) = "  + QString::number(grnd_level));
+    ui->textEdit->append("pressure mmHg (Grnd level) = " + QString::number((double)grnd_level*0.75));
     ui->textEdit->append("humidity % = "   + QString::number(weather1.humidity));
     ui->textEdit->append("wind_speed m/s= " + QString::number(weather1.wind_speed));
     ui->textEdit->append("wind_deg = "   + QString::number(weather1.wind_deg));
@@ -200,8 +203,8 @@ void MainWindow::parser_request (QString data ){
     ui->textEdit_pressure->clear();
     ui->textEdit_pressure->setFontWeight(QFont::Bold);
     ui->textEdit_pressure->setTextColor("green");
-    ui->textEdit_pressure->setFontPointSize(10);
-    ui->textEdit_pressure->append(QString::number(weather1.pressure*0.750) + " мм рт.ст.");
+    ui->textEdit_pressure->setFontPointSize(9);
+    ui->textEdit_pressure->append(QString::number(weather1.pressure*0.750) + " мм рт.ст. " + QString::number(grnd_level*0.75) + " (РЗ)");   //grnd_level*0.75
 
     ui->textEdit_wind->clear();
     ui->textEdit_wind->setFontWeight(QFont::Bold);

@@ -9,7 +9,7 @@
 
 #include <QDebug>
 
-QString version ="V2.1 Plot. ";
+QString version ="V2.1.1 Plot. ";
 int id=710719;              // Чернівці default
 
 MainWindow::MainWindow(QWidget *parent)
@@ -89,6 +89,18 @@ MainWindow::MainWindow(QWidget *parent)
                                     "Використовується для коректного відображення часу - сходу/заходу сонця.");
         ui->comboBox->setToolTip   ("Вибір населенного пункту для відображення погоди.\n"
                                     "В списку всі обласні центри України.");
+
+        ui->textEdit_time_request->setToolTip("Відображення часу крайнього оновлення метеоданних головного вікна.\n"
+                                              "Період оновлення метеоданних становить 5хв.");
+
+
+        ui->textEdit_temperatura->setToolTip("Відображення температури в градусах цельсія.");
+        ui->textEdit_humidity->setToolTip   ("Відображення відносної вологості у відсотках.");
+        ui->textEdit_pressure->setToolTip   ("Відображення атмосферного тиску на рівні моря в міліметрах ртутного стовпа.\n"
+                                             "Відображення атмосферного тиску на рівні землі -РЗ.");
+        ui->textEdit_wind->setToolTip   ("Відображення сили вітру в метрах за секунду.");
+        ui->textEdit_wind_deg->setToolTip   ("Відображення напрямку вітру в градусах (360°).");
+        ui->textEdit_state->setToolTip      ("Відображення станну неба: ясно, хмарно, дощь ...");
    }
 
 MainWindow::~MainWindow()
