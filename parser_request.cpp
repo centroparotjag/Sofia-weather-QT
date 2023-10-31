@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include <QDebug>
+#include "mainwindow.h"
+#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <cstring>
 
@@ -100,11 +102,9 @@ QString MainWindow::find_city(QString data){
     return result;
 }
 
-int count_data = 0;
-double weather_data[cnt_point_plot+1][5] = {0};
+uint count_data = 0;
 int last_update_hour = 55;
-
-int test = 0;
+//int test = 0;
 
 void MainWindow::parser_request (QString data ){
     weather weather1;
@@ -128,27 +128,22 @@ void MainWindow::parser_request (QString data ){
 
     //------ Plot updates every hour --------------------------
     if (last_update_hour != hour && weather1.pressure != 0 && weather1.humidity != 0){
-        weather_data  [count_data][0] = weather1.temp-273.16;
-        weather_data  [count_data][1] = weather1.pressure*0.75;
-        weather_data  [count_data][2] = weather1.humidity;
-        weather_data  [count_data][3] = weather1.wind_speed;
-        weather_data  [count_data][4] = weather1.wind_deg;
-        plot_window.plot_g1(weather_data, count_data);
 
-        //------------ TEST -------------
-        qDebug() << "weather_data  ["<<count_data<<"][0] = " << weather_data  [count_data][0];
-        //------------ TEST -------------
+//        test++;
+//        weather1.temp      =weather1.temp      +test;
+//        weather1.pressure  =weather1.pressure  +test;
+//        weather1.humidity  =weather1.humidity  +test;
+//        weather1.wind_speed=weather1.wind_speed+test;
+//        weather1.wind_deg  =weather1.wind_deg  +test;
+
+        plot_window.plot_g1(weather1.temp-273.16, weather1.wind_speed, weather1.wind_deg,
+                            weather1.pressure*0.75, weather1.humidity, count_data);
 
         count_data++;
         last_update_hour = hour;
     }
 
     qDebug() << "Count data " << count_data;
-
-    if(count_data > cnt_point_plot){
-        //count_data = 0;
-        count_data = cnt_point_plot;
-    }
 
     //--------------------------------------------------------
 
@@ -257,3 +252,4 @@ void MainWindow::parser_request (QString data ){
 
     ui->textEdit_duration->append(unixTimeToHumanReadable(duration));
 }
+

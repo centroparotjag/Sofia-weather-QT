@@ -45,6 +45,9 @@
       <bold>true</bold>
      </font>
     </property>
+    <property name="toolTip">
+     <string/>
+    </property>
     <property name="text">
      <string>Графік</string>
     </property>

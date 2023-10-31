@@ -20,9 +20,8 @@ public:
 private:
     Ui::plot_window *ui;
 
-public:
-    void plot_g1(double (* array)[5] , int count);
-
+public:    
+    void plot_g1(double temp, double speedwind, double deflWind, double pressure, double humidity, int count);
 };
 
 #endif // PLOT_WINDOW_H

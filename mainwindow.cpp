@@ -78,6 +78,17 @@ MainWindow::MainWindow(QWidget *parent)
         ui->radioButton->setChecked(settings.value(SETTINGS_SummerVinter, false).toBool());
         ui->comboBox->setCurrentIndex(settings.value(SETTINGS_CITY, 0).toInt());
         on_comboBox_activated(ui->comboBox->currentIndex());
+
+
+        ui->pushButton->setToolTip("Виведення графіків змін метеоданних.\n"
+                                    "Накопичення данних відбувається від моменту запуску програми до її закриття.\n"
+                                    "Оновлення метеоданних на графіку відбувається з періодичністю в 1 год.\n"
+                                    "Оновлення метеоданних в основному вікні відбувається з періодичністю в 5хв.");
+        ui->pushButton_2->setToolTip("Сюрприз для Софійки і не тільки...))");
+        ui->radioButton->setToolTip("Встановлює часовий пояс літо/зима. \n"
+                                    "Використовується для коректного відображення часу - сходу/заходу сонця.");
+        ui->comboBox->setToolTip   ("Вибір населенного пункту для відображення погоди.\n"
+                                    "В списку всі обласні центри України.");
    }
 
 MainWindow::~MainWindow()
@@ -130,6 +141,12 @@ void MainWindow::onGo() {
     ui->textEdit->append(QDateTime::currentDateTime().toString("dd.MM.yyyy HH:mm:ss") + "\n");
     ui->textEdit->append( "urlText - " + urlText + "\n" );
 
+//    ui->textEdit_time_request->clear();
+//    ui->textEdit_time_request->setFontPointSize(10);
+//    ui->textEdit_time_request->setFontWeight(QFont::Bold);
+//    ui->textEdit_time_request->setTextColor(QColor::fromRgb(200, 0, 0));
+//    ui->textEdit_time_request->append("Оновлення данних");
+
     m_manager.get( QNetworkRequest( QUrl( urlText ) ) );
 }
 
@@ -142,7 +159,6 @@ void MainWindow::onFinished( QNetworkReply* reply ) {
         ui->textEdit_time_request->setFontWeight(QFont::Bold);
         ui->textEdit_time_request->setTextColor(QColor::fromRgb(0, 0, 0));
         ui->textEdit_time_request->append("Оновлено " +QDateTime::currentDateTime().toString("HH:mm:ss dd.MM.yyyy"));
-
 
         QString data = QString::fromUtf8( reply->readAll() );
         ui->textEdit->setTextColor(QColor::fromRgb(200,0,0));
@@ -157,7 +173,6 @@ void MainWindow::onFinished( QNetworkReply* reply ) {
         ui->textEdit->append( reply->errorString() );
         timer->setInterval(1000);         // 300000 = 5min  3600000=1h
     }
-
     reply->deleteLater();
 }
 
