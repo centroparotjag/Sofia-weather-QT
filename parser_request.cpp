@@ -204,7 +204,8 @@ void MainWindow::parser_request (QString data ){
     ui->textEdit_pressure->setFontWeight(QFont::Bold);
     ui->textEdit_pressure->setTextColor("green");
     ui->textEdit_pressure->setFontPointSize(9);
-    ui->textEdit_pressure->append(QString::number(weather1.pressure*0.750) + " мм рт.ст. " + QString::number(grnd_level*0.75) + " (РЗ)");   //grnd_level*0.75
+    ui->textEdit_pressure->append(QString::number(weather1.pressure*0.750) + " мм рт.ст. " +
+                                  "(" +QString::number(grnd_level*0.75) + " РЗ)");   //grnd_level*0.75
 
     ui->textEdit_wind->clear();
     ui->textEdit_wind->setFontWeight(QFont::Bold);
