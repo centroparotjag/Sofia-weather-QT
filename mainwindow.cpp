@@ -9,7 +9,7 @@
 
 #include <QDebug>
 
-QString version ="V2.1.1 Plot. ";
+QString version ="V2.2.0 arrow. ";
 int id=710719;              // Чернівці default
 
 MainWindow::MainWindow(QWidget *parent)

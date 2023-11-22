@@ -255,5 +255,59 @@ void MainWindow::parser_request (QString data ){
     }
 
     ui->textEdit_duration->append(unixTimeToHumanReadable(duration));
+
+
+    //--------------- wind direction indicator ---------------
+
+    QString path_image;
+    #ifdef QT_DEBUG     // debug
+       path_image = "D:/Projekt/QT_prj/Sofia_weather/Sofia-weather-QT/sources/wind_arrow/";
+    #endif
+
+    #ifndef QT_DEBUG    // release
+      //path_image = ":/wind_arrow/";
+      path_image = QDir::currentPath() + "/wind_arrow/";
+    #endif
+
+    QString image_name;
+    if (weather1.wind_deg>=352 || weather1.wind_deg<7){ image_name = "WA_0.png"; }
+
+    if (weather1.wind_deg>=7 && weather1.wind_deg<22){ image_name = "WA_15.png"; }
+    if (weather1.wind_deg>=22 && weather1.wind_deg<37){ image_name = "WA_30.png"; }
+    if (weather1.wind_deg>=37 && weather1.wind_deg<52){ image_name = "WA_45.png"; }
+    if (weather1.wind_deg>=52 && weather1.wind_deg<67){ image_name = "WA_60.png"; }
+    if (weather1.wind_deg>=67 && weather1.wind_deg<82){ image_name = "WA_75.png"; }
+    if (weather1.wind_deg>=82 && weather1.wind_deg<97){ image_name = "WA_90.png"; }
+
+    if (weather1.wind_deg>=97 && weather1.wind_deg<112){ image_name = "WA_105.png"; }
+    if (weather1.wind_deg>=112 && weather1.wind_deg<127){ image_name = "WA_120.png"; }
+    if (weather1.wind_deg>=127 && weather1.wind_deg<142){ image_name = "WA_135.png"; }
+    if (weather1.wind_deg>=142 && weather1.wind_deg<157){ image_name = "WA_150.png"; }
+    if (weather1.wind_deg>=157 && weather1.wind_deg<172){ image_name = "WA_165.png"; }
+    if (weather1.wind_deg>=172 && weather1.wind_deg<187){ image_name = "WA_180.png"; }
+
+    if (weather1.wind_deg>=187 && weather1.wind_deg<202){ image_name = "WA_195.png"; }
+    if (weather1.wind_deg>=202 && weather1.wind_deg<217){ image_name = "WA_210.png"; }
+    if (weather1.wind_deg>=217 && weather1.wind_deg<232){ image_name = "WA_225.png"; }
+    if (weather1.wind_deg>=232 && weather1.wind_deg<247){ image_name = "WA_240.png"; }
+    if (weather1.wind_deg>=247 && weather1.wind_deg<262){ image_name = "WA_255.png"; }
+    if (weather1.wind_deg>=262 && weather1.wind_deg<277){ image_name = "WA_270.png"; }
+
+    if (weather1.wind_deg>=277 && weather1.wind_deg<292){ image_name = "WA_285.png"; }
+    if (weather1.wind_deg>=292 && weather1.wind_deg<307){ image_name = "WA_300.png"; }
+    if (weather1.wind_deg>=307 && weather1.wind_deg<322){ image_name = "WA_315.png"; }
+    if (weather1.wind_deg>=322 && weather1.wind_deg<337){ image_name = "WA_330.png"; }
+    if (weather1.wind_deg>=337 && weather1.wind_deg<352){ image_name = "WA_345.png"; }
+
+    QPixmap imagine (path_image + image_name);
+
+    QSize PicSize(40, 40);  // resize picture
+    imagine = imagine.scaled(PicSize,Qt::KeepAspectRatio);
+    ui->label_10->setPixmap(imagine);
+    ui->label_10->repaint();
+    ui->label_10->setPixmap(imagine);
+
+    //qDebug() << "path_image = " << path_image + image_name;
+
 }
 

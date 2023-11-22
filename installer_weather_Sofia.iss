@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Sofia Weather"
-#define MyAppVersion "2.1.1 Plot"
+#define MyAppVersion "2.2.0 Arrow"
 #define MyAppPublisher "centroparotjag"
 #define MyAppExeName "WeatherInformerForSofia.exe"
 #define MyAppAssocName MyAppName + MyAppVersion + ""
@@ -50,6 +50,10 @@ Root: HKA; Subkey: "Software\Classes\Applications\{#MyAppExeName}\SupportedTypes
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
+
+[Files]
+Source: "D:\Projekt\QT_prj\Sofia_weather\Sofia-weather-QT\sources\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+                      
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
