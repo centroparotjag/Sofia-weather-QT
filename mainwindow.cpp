@@ -9,7 +9,7 @@
 
 #include <QDebug>
 
-QString version ="V2.2.0 arrow. ";
+QString version ="V2.2.1 arrow. ";
 int id=710719;              // Чернівці default
 
 MainWindow::MainWindow(QWidget *parent)
@@ -65,6 +65,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->comboBox->addItem( "Луганськ"        ,"23");
         ui->comboBox->addItem( "Сімферополь"     ,"24");
         ui->comboBox->addItem( "Мала Токмачка"   ,"25");
+        ui->comboBox->addItem( "Красногорівка"   ,"26");
 
         // read settings from register
         /* При создании главного окна производим установку начальных параметров
@@ -227,6 +228,7 @@ void MainWindow::on_comboBox_activated(int index)
         case 23: id=702658; break;      //"Луганськ"
         case 24: id=693805; break;      //"Сімферополь"
         case 25: id=702153; break;      //"Мала Токмачка"
+        case 26: id=704393; break;      //"Красногорівка"
 
         default: id=710719; break;      //"Чернівці"
     }

@@ -114,6 +114,7 @@ void MainWindow::parser_request (QString data ){
     uint grnd_level     = find_data(data, "grnd_level").toInt();
     weather1.humidity   = find_data(data, "humidity").toInt();
     weather1.wind_speed = find_data(data, "wind").toDouble();
+    weather1.wind_gust  = find_data(data, "gust").toDouble();
     weather1.wind_deg   = find_data(data, "deg").toInt();
     weather1.sunrise    = find_data(data, "sunrise").toInt();
     weather1.sunset     = find_data(data, "sunset").toInt();
@@ -159,6 +160,7 @@ void MainWindow::parser_request (QString data ){
     ui->textEdit->append("pressure mmHg (Grnd level) = " + QString::number((double)grnd_level*0.75));
     ui->textEdit->append("humidity % = "   + QString::number(weather1.humidity));
     ui->textEdit->append("wind_speed m/s= " + QString::number(weather1.wind_speed));
+    ui->textEdit->append("wind_gust m/s= " + QString::number(weather1.wind_gust));          //
     ui->textEdit->append("wind_deg = "   + QString::number(weather1.wind_deg));
     ui->textEdit->append("dir_angle = "  + QString::number(weather1.directional_angle));
     ui->textEdit->append("sunrise Unix time (UTC) = "    + QString::number(weather1.sunrise));
@@ -210,13 +212,11 @@ void MainWindow::parser_request (QString data ){
     ui->textEdit_wind->clear();
     ui->textEdit_wind->setFontWeight(QFont::Bold);
     ui->textEdit_wind->setTextColor("green");
-    if (weather1.wind_speed > 10){
+    if (weather1.wind_gust > 15){
         ui->textEdit_wind->setTextColor("DeepPink");
     }
     ui->textEdit_wind->setFontPointSize(10);
-    ui->textEdit_wind->append(QString::number(weather1.wind_speed) + " м/с");
-
-
+    ui->textEdit_wind->append(QString::number(weather1.wind_speed) + " м/с, (пор. "  + QString::number(weather1.wind_gust) + ")");
     ui->textEdit_wind_deg->clear();
     ui->textEdit_wind_deg->setFontWeight(QFont::Bold);
     ui->textEdit_wind_deg->setTextColor("green");
@@ -307,7 +307,7 @@ void MainWindow::parser_request (QString data ){
     ui->label_10->repaint();
     ui->label_10->setPixmap(imagine);
 
-    //qDebug() << "path_image = " << path_image + image_name;
+    qDebug() << "path_image = " << path_image + image_name;
 
 }
 

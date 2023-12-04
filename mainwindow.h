@@ -40,6 +40,7 @@ public:
         int pressure = 0;
         int humidity = 0;
         double wind_speed = 0;
+        double wind_gust=0;
         int wind_deg = 0;
         double directional_angle = 0;
         int sunrise = 0;
