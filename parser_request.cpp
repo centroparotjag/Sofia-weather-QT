@@ -260,14 +260,17 @@ void MainWindow::parser_request (QString data ){
     //--------------- wind direction indicator ---------------
 
     QString path_image;
-    #ifdef QT_DEBUG     // debug
-       path_image = "D:/Projekt/QT_prj/Sofia_weather/Sofia-weather-QT/sources/wind_arrow/";
-    #endif
+//    #ifdef QT_DEBUG     // debug
+//       path_image = "D:/Projekt/QT_prj/Sofia_weather/Sofia-weather-QT/sources/wind_arrow/";
+//    #endif
 
-    #ifndef QT_DEBUG    // release
-      //path_image = ":/wind_arrow/";
+//    #ifndef QT_DEBUG    // release
+//      //path_image = ":/wind_arrow/";   // do not work???
+//      path_image = QDir::currentPath() + "/wind_arrow/";
+//    #endif
+
       path_image = QDir::currentPath() + "/wind_arrow/";
-    #endif
+
 
     QString image_name;
     if (weather1.wind_deg>=352 || weather1.wind_deg<7){ image_name = "WA_0.png"; }

@@ -122,6 +122,40 @@ double Tmin, Tmax, Smin, Smax, Dmin, Dmax, Pmin, Pmax, Hmin, Hmax= 0;
 
 void plot_window::MinMaxPlot(double temp, double speedwind, double deflWind, double pressure, double humidity){
 
+    if (Tmin==0 && Tmax==0 && Smin==0 && Smax==0 && Dmin==0 && Dmax==0 && Pmin==0 && Pmax==0 && Hmin==0 && Hmax==0){
+        Tmax = temp;
+        Tmin = temp;
+        Smax = speedwind;
+        Smin = speedwind;
+        Dmax = deflWind;
+        Dmin = deflWind;
+        Pmax = pressure;
+        Pmin = pressure;
+        Hmax = humidity;
+        Hmin = humidity;
+
+        ui->label_Tmax->setNum(Tmax);
+        ui->label_Tmax->setText(ui->label_Tmax->text()+" °C");
+        ui->label_Tmin->setNum(Tmin);
+        ui->label_Tmin->setText(ui->label_Tmin->text()+" °C");
+        ui->label_Smax->setNum(Smax);
+        ui->label_Smax->setText(ui->label_Smax->text()+" м/с");
+        ui->label_Smin->setNum(Smin);
+        ui->label_Smin->setText(ui->label_Smin->text()+" м/с");
+        ui->label_Dmax->setNum(Dmax);
+        ui->label_Dmax->setText(ui->label_Dmax->text()+" °");
+        ui->label_Dmin->setNum(Dmin);
+        ui->label_Dmin->setText(ui->label_Dmin->text()+" °");
+        ui->label_Pmax->setNum(Pmax);
+        ui->label_Pmax->setText(ui->label_Pmax->text()+" ммРст");
+        ui->label_Pmin->setNum(Pmin);
+        ui->label_Pmin->setText(ui->label_Pmin->text()+" ммРст");
+        ui->label_Hmax->setNum(Hmax);
+        ui->label_Hmax->setText(ui->label_Hmax->text()+" %");
+        ui->label_Hmin->setNum(Hmin);
+        ui->label_Hmin->setText(ui->label_Hmin->text()+" %");
+    }
+
     if (temp > Tmax){
         Tmax = temp;
         ui->label_Tmax->setNum(Tmax);
