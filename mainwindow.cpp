@@ -9,7 +9,7 @@
 
 #include <QDebug>
 
-QString version ="V2.2.1 arrow. ";
+QString version ="V2.2.2";
 int id=710719;              // Чернівці default
 
 MainWindow::MainWindow(QWidget *parent)
@@ -102,6 +102,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->textEdit_wind->setToolTip   ("Відображення сили вітру в метрах за секунду.");
         ui->textEdit_wind_deg->setToolTip   ("Відображення напрямку вітру в градусах (360°).");
         ui->textEdit_state->setToolTip      ("Відображення станну неба: ясно, хмарно, дощь ...");
+
    }
 
 MainWindow::~MainWindow()

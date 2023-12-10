@@ -72,6 +72,13 @@ plot_window::plot_window(QWidget *parent) :
     ui->humidity->yAxis->setLabel("Відн. вол. (%)");
     ui->humidity->yAxis->setRange(20, 100);
 
+    ui->label_Tmin->setText("");
+    ui->label_Smin->setText("");
+    ui->label_Dmin->setText("");
+    ui->label_Pmin->setText("");
+    ui->label_Hmin->setText("");
+
+
 }
 
 plot_window::~plot_window()
@@ -106,4 +113,68 @@ void plot_window::plot_g1(double temp, double speedwind, double deflWind, double
     ui->deflWind ->replot();
     ui->pressure ->replot();
     ui->humidity ->replot();
+
+    MinMaxPlot(temp,  speedwind,  deflWind,  pressure,  humidity);
+
+}
+
+double Tmin, Tmax, Smin, Smax, Dmin, Dmax, Pmin, Pmax, Hmin, Hmax= 0;
+
+void plot_window::MinMaxPlot(double temp, double speedwind, double deflWind, double pressure, double humidity){
+
+    if (temp > Tmax){
+        Tmax = temp;
+        ui->label_Tmax->setNum(Tmax);
+        ui->label_Tmax->setText(ui->label_Tmax->text()+" °C");
+    }
+    if (temp < Tmin){
+        Tmin = temp;
+        ui->label_Tmin->setNum(Tmin);
+        ui->label_Tmin->setText(ui->label_Tmin->text()+" °C");
+    }
+
+    if (speedwind > Smax){
+        Smax = speedwind;
+        ui->label_Smax->setNum(Smax);
+        ui->label_Smax->setText(ui->label_Smax->text()+" м/с");
+    }
+    if (speedwind < Smin){
+        Smin = speedwind;
+        ui->label_Smin->setNum(Smin);
+        ui->label_Smin->setText(ui->label_Smin->text()+" м/с");
+    }
+
+    if (deflWind > Dmax){
+        Dmax = deflWind;
+        ui->label_Dmax->setNum(Dmax);
+        ui->label_Dmax->setText(ui->label_Dmax->text()+" °");
+    }
+    if (deflWind < Dmin){
+        Dmin = deflWind;
+        ui->label_Dmin->setNum(Dmin);
+        ui->label_Dmin->setText(ui->label_Dmin->text()+" °");
+    }
+
+    if (pressure > Pmax){
+        Pmax = pressure;
+        ui->label_Pmax->setNum(Pmax);
+        ui->label_Pmax->setText(ui->label_Pmax->text()+" ммРст");
+    }
+    if (pressure < Pmin){
+        Pmin = pressure;
+        ui->label_Pmin->setNum(Pmin);
+        ui->label_Pmin->setText(ui->label_Pmin->text()+" ммРст");
+    }
+
+    if (humidity > Hmax){
+        Hmax = humidity;
+        ui->label_Hmax->setNum(Hmax);
+        ui->label_Hmax->setText(ui->label_Hmax->text()+" %");
+    }
+    if (humidity < Hmin){
+        Hmin = pressure;
+        ui->label_Hmin->setNum(Hmin);
+        ui->label_Hmin->setText(ui->label_Hmin->text()+" %");
+    }
+
 }

@@ -22,6 +22,7 @@ private:
 
 public:    
     void plot_g1(double temp, double speedwind, double deflWind, double pressure, double humidity, int count);
+    void MinMaxPlot(double temp, double speedwind, double deflWind, double pressure, double humidity);
 };
 
 #endif // PLOT_WINDOW_H
