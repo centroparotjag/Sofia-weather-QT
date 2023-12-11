@@ -46,6 +46,7 @@ plot_window::plot_window(QWidget *parent) :
     ui->deflWind->yAxis->setLabel("Напр. вітру (°)");
     ui->deflWind->yAxis->setRange(0, 360);
 
+
     // pressure
     ui->pressure->addGraph();
     ui->pressure->graph(0);
@@ -88,6 +89,7 @@ plot_window::~plot_window()
 }
 
 
+double Tmin, Tmax, Smin, Smax, Dmin, Dmax, Pmin, Pmax, Hmin, Hmax= 0;
 
 void plot_window::plot_g1(double temp, double speedwind, double deflWind, double pressure, double humidity, int count){
 
@@ -115,10 +117,11 @@ void plot_window::plot_g1(double temp, double speedwind, double deflWind, double
     ui->humidity ->replot();
 
     MinMaxPlot(temp,  speedwind,  deflWind,  pressure,  humidity);
+    set_the_graph_range(0.5);
 
 }
 
-double Tmin, Tmax, Smin, Smax, Dmin, Dmax, Pmin, Pmax, Hmin, Hmax= 0;
+
 
 void plot_window::MinMaxPlot(double temp, double speedwind, double deflWind, double pressure, double humidity){
 
@@ -210,5 +213,24 @@ void plot_window::MinMaxPlot(double temp, double speedwind, double deflWind, dou
         ui->label_Hmin->setNum(Hmin);
         ui->label_Hmin->setText(ui->label_Hmin->text()+" %");
     }
-
 }
+
+
+void plot_window::set_the_graph_range(double border){
+    // Tmin, Tmax, Smin, Smax, Dmin, Dmax, Pmin, Pmax, Hmin, Hmax
+    ui->temp->yAxis->setRange     (Tmin - border, Tmax + border);
+    ui->speedwind->yAxis->setRange(Smin - border, Smax + border);
+    ui->deflWind->yAxis->setRange (Dmin - border, Dmax + border);
+    ui->pressure->yAxis->setRange (Pmin - border, Pmax + border);
+    ui->humidity->yAxis->setRange (Hmin - border, Hmax + border);
+}
+
+
+
+
+
+
+
+
+
+
