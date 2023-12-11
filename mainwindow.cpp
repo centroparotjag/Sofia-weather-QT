@@ -9,7 +9,7 @@
 
 #include <QDebug>
 
-QString version ="V2.2.2";
+QString version ="V2.2.3";
 int id=710719;              // Чернівці default
 
 MainWindow::MainWindow(QWidget *parent)

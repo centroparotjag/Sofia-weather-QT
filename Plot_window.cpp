@@ -89,12 +89,13 @@ plot_window::~plot_window()
 }
 
 
-double Tmin, Tmax, Smin, Smax, Dmin, Dmax, Pmin, Pmax, Hmin, Hmax= 0;
+
 
 void plot_window::plot_g1(double temp, double speedwind, double deflWind, double pressure, double humidity, int count){
 
     setWindowTitle("Графік змін метеоданних. Оновлено " +QDateTime::currentDateTime().toString("HH:mm:ss dd.MM.yyyy"));
 
+    MinMaxPlot(temp,  speedwind,  deflWind,  pressure,  humidity);
 
     if (count > cnt_point_plot){
         ui->temp->xAxis->     setRange(count-cnt_point_plot, count);
@@ -102,6 +103,13 @@ void plot_window::plot_g1(double temp, double speedwind, double deflWind, double
         ui->deflWind->xAxis-> setRange(count-cnt_point_plot, count);
         ui->pressure->xAxis-> setRange(count-cnt_point_plot, count);
         ui->humidity->xAxis-> setRange(count-cnt_point_plot, count);
+    }
+    else {
+        ui->temp->xAxis->     setRange(0, cnt_point_plot);
+        ui->speedwind->xAxis->setRange(0, cnt_point_plot);
+        ui->deflWind->xAxis-> setRange(0, cnt_point_plot);
+        ui->pressure->xAxis-> setRange(0, cnt_point_plot);
+        ui->humidity->xAxis-> setRange(0, cnt_point_plot);
     }
 
     ui->temp     ->graph(0)->addData(count, temp);
@@ -115,14 +123,10 @@ void plot_window::plot_g1(double temp, double speedwind, double deflWind, double
     ui->deflWind ->replot();
     ui->pressure ->replot();
     ui->humidity ->replot();
-
-    MinMaxPlot(temp,  speedwind,  deflWind,  pressure,  humidity);
-    set_the_graph_range(0.5);
-
 }
 
 
-
+double Tmin, Tmax, Smin, Smax, Dmin, Dmax, Pmin, Pmax, Hmin, Hmax= 0;
 void plot_window::MinMaxPlot(double temp, double speedwind, double deflWind, double pressure, double humidity){
 
     if (Tmin==0 && Tmax==0 && Smin==0 && Smax==0 && Dmin==0 && Dmax==0 && Pmin==0 && Pmax==0 && Hmin==0 && Hmax==0){
@@ -209,10 +213,13 @@ void plot_window::MinMaxPlot(double temp, double speedwind, double deflWind, dou
         ui->label_Hmax->setText(ui->label_Hmax->text()+" %");
     }
     if (humidity < Hmin){
-        Hmin = pressure;
+        Hmin = humidity;
         ui->label_Hmin->setNum(Hmin);
         ui->label_Hmin->setText(ui->label_Hmin->text()+" %");
     }
+
+
+    set_the_graph_range(0.5);
 }
 
 
