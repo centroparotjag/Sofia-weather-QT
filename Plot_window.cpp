@@ -225,11 +225,18 @@ void plot_window::MinMaxPlot(double temp, double speedwind, double deflWind, dou
 
 void plot_window::set_the_graph_range(double border){
     // Tmin, Tmax, Smin, Smax, Dmin, Dmax, Pmin, Pmax, Hmin, Hmax
-    ui->temp->yAxis->setRange     (Tmin - border, Tmax + border);
-    ui->speedwind->yAxis->setRange(Smin - border, Smax + border);
-    ui->deflWind->yAxis->setRange (Dmin - border, Dmax + border);
-    ui->pressure->yAxis->setRange (Pmin - border, Pmax + border);
-    ui->humidity->yAxis->setRange (Hmin - border, Hmax + border);
+//        ui->temp->yAxis->setRange     (Tmin - border, Tmax + border);
+//        ui->speedwind->yAxis->setRange(Smin - border, Smax + border);
+//        ui->deflWind->yAxis->setRange (Dmin - border, Dmax + border);
+//        ui->pressure->yAxis->setRange (Pmin - border, Pmax + border);
+//        ui->humidity->yAxis->setRange (Hmin - border, Hmax + border);
+
+    ui->temp->yAxis->setRange     (Tmin - ((Tmax-Tmin + 0.1)/5), Tmax + ((Tmax-Tmin + 0.1)/5));
+    ui->speedwind->yAxis->setRange(Smin - ((Smax-Smin + 0.1)/5), Smax + ((Smax-Smin + 0.1)/5));
+    ui->deflWind->yAxis->setRange (Dmin - ((Dmax-Dmin + 0.1)/5), Dmax + ((Dmax-Dmin + 0.1)/5));
+    ui->pressure->yAxis->setRange (Pmin - ((Pmax-Pmin + 0.1)/5), Pmax + ((Pmax-Pmin + 0.1)/5));
+    ui->humidity->yAxis->setRange (Hmin - ((Hmax-Hmin + 0.1)/5), Hmax + ((Hmax-Hmin + 0.1)/5));
+
 }
 
 
