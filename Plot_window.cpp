@@ -218,6 +218,23 @@ void plot_window::MinMaxPlot(double temp, double speedwind, double deflWind, dou
         ui->label_Hmin->setText(ui->label_Hmin->text()+" %");
     }
 
+    //---------- delta ----------------
+
+    ui->delta_T->setNum(Tmax - Tmin);
+    ui->delta_T->setText("Δ " + ui->delta_T->text());
+
+    ui->delta_S->setNum(Smax - Smin);
+    ui->delta_S->setText("Δ " + ui->delta_S->text());
+
+    ui->delta_d->setNum(Dmax - Dmin);
+    ui->delta_d->setText("Δ " + ui->delta_d->text());
+
+    ui->delta_P->setNum(Pmax - Pmin);
+    ui->delta_P->setText("Δ " + ui->delta_P->text());
+
+    ui->delta_h->setNum(Hmax - Hmin);
+    ui->delta_h->setText("Δ " + ui->delta_h->text());
+
 
     set_the_graph_range(0.5);
 }
