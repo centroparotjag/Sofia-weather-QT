@@ -212,7 +212,7 @@ void MainWindow::parser_request (QString data ){
     ui->textEdit_wind->clear();
     ui->textEdit_wind->setFontWeight(QFont::Bold);
     ui->textEdit_wind->setTextColor("green");
-    if (weather1.wind_gust > 15){
+    if (weather1.wind_gust > 18 || weather1.wind_speed > 10){
         ui->textEdit_wind->setTextColor("DeepPink");
     }
     ui->textEdit_wind->setFontPointSize(10);

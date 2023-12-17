@@ -17,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->setGeometry(5, 40, 473, 512);
+
     setWindowTitle(version);
 
     connect( ui->pushButton, SIGNAL( clicked( bool ) ), SLOT( on_pushButton_clicked() ) );

@@ -7,6 +7,7 @@ plot_window::plot_window(QWidget *parent) :
     ui(new Ui::plot_window)
 {
     ui->setupUi(this);
+    this->setGeometry(480, 40, 610, 512);  // open window where
 
     // temperature
     ui->temp->addGraph();

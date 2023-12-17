@@ -2,6 +2,12 @@
 <ui version="4.0">
  <class>plot_window</class>
  <widget class="QWidget" name="plot_window">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -10,12 +16,18 @@
     <height>512</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>610</width>
+    <height>512</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Графік змін метеоданних</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="16" column="0">
-    <widget class="QLabel" name="h">
+   <item row="0" column="0">
+    <widget class="QLabel" name="T">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
        <horstretch>0</horstretch>
@@ -23,15 +35,86 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>h max/min</string>
+      <string>T max/min</string>
      </property>
     </widget>
    </item>
-   <item row="12" column="1" rowspan="4">
-    <widget class="QCustomPlot" name="pressure" native="true"/>
+   <item row="0" column="1" rowspan="4">
+    <widget class="QCustomPlot" name="temp" native="true"/>
    </item>
-   <item row="16" column="1" rowspan="4">
-    <widget class="QCustomPlot" name="humidity" native="true"/>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_Tmax">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>T max</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_Tmin">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>T min</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="delta_T">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Δ</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QLabel" name="S">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>S max/min</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1" rowspan="4">
+    <widget class="QCustomPlot" name="speedwind" native="true"/>
+   </item>
+   <item row="5" column="0">
+    <widget class="QLabel" name="label_Smax">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>S max</string>
+     </property>
+    </widget>
    </item>
    <item row="6" column="0">
     <widget class="QLabel" name="label_Smin">
@@ -46,22 +129,6 @@
      </property>
      <property name="text">
       <string>S min</string>
-     </property>
-    </widget>
-   </item>
-   <item row="19" column="0">
-    <widget class="QLabel" name="delta_h">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Δ</string>
      </property>
     </widget>
    </item>
@@ -94,21 +161,11 @@
      </property>
     </widget>
    </item>
-   <item row="4" column="0">
-    <widget class="QLabel" name="S">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>S max/min</string>
-     </property>
-    </widget>
+   <item row="8" column="1" rowspan="4">
+    <widget class="QCustomPlot" name="deflWind" native="true"/>
    </item>
-   <item row="0" column="0">
-    <widget class="QLabel" name="T">
+   <item row="9" column="0">
+    <widget class="QLabel" name="label_Dmax">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
        <horstretch>0</horstretch>
@@ -116,39 +173,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>T max/min</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QLabel" name="delta_T">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Δ</string>
-     </property>
-    </widget>
-   </item>
-   <item row="15" column="0">
-    <widget class="QLabel" name="delta_P">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Δ</string>
+      <string>D max</string>
      </property>
     </widget>
    </item>
@@ -165,6 +190,51 @@
      </property>
      <property name="text">
       <string>D min</string>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="0">
+    <widget class="QLabel" name="delta_d">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Δ</string>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="0">
+    <widget class="QLabel" name="P">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>P max/min</string>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="1" rowspan="4">
+    <widget class="QCustomPlot" name="pressure" native="true"/>
+   </item>
+   <item row="13" column="0">
+    <widget class="QLabel" name="label_Pmax">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>P max</string>
      </property>
     </widget>
    </item>
@@ -187,63 +257,8 @@
      </property>
     </widget>
    </item>
-   <item row="12" column="0">
-    <widget class="QLabel" name="P">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>P max/min</string>
-     </property>
-    </widget>
-   </item>
-   <item row="9" column="0">
-    <widget class="QLabel" name="label_Dmax">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>D max</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0">
-    <widget class="QLabel" name="label_Smax">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>S max</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label_Tmax">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>T max</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="1" rowspan="4">
-    <widget class="QCustomPlot" name="speedwind" native="true"/>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="label_Tmin">
+   <item row="15" column="0">
+    <widget class="QLabel" name="delta_P">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -254,7 +269,36 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>T min</string>
+      <string>Δ</string>
+     </property>
+    </widget>
+   </item>
+   <item row="16" column="0">
+    <widget class="QLabel" name="h">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>h max/min</string>
+     </property>
+    </widget>
+   </item>
+   <item row="16" column="1" rowspan="4">
+    <widget class="QCustomPlot" name="humidity" native="true"/>
+   </item>
+   <item row="17" column="0">
+    <widget class="QLabel" name="label_Hmax">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>H max</string>
      </property>
     </widget>
    </item>
@@ -274,8 +318,8 @@
      </property>
     </widget>
    </item>
-   <item row="11" column="0">
-    <widget class="QLabel" name="delta_d">
+   <item row="19" column="0">
+    <widget class="QLabel" name="delta_h">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -289,38 +333,6 @@
       <string>Δ</string>
      </property>
     </widget>
-   </item>
-   <item row="13" column="0">
-    <widget class="QLabel" name="label_Pmax">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>P max</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1" rowspan="4">
-    <widget class="QCustomPlot" name="temp" native="true"/>
-   </item>
-   <item row="17" column="0">
-    <widget class="QLabel" name="label_Hmax">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>H max</string>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="1" rowspan="4">
-    <widget class="QCustomPlot" name="deflWind" native="true"/>
    </item>
   </layout>
  </widget>
