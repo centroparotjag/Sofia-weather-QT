@@ -9,7 +9,7 @@
 
 #include <QDebug>
 
-QString version ="V2.2.3";
+QString version ="V2.2.4";
 int id=710719;              // Чернівці default
 
 MainWindow::MainWindow(QWidget *parent)
@@ -240,7 +240,16 @@ void MainWindow::on_comboBox_activated(int index)
 
 void MainWindow::on_pushButton_clicked()
 {
+    // ---------- activate the window diagram after minimizing ---------
     plot_window.show();
+    if(plot_window.isMinimized())
+        plot_window.showNormal();
+    plot_window.raise();
+    plot_window.activateWindow();
+    //----------------------------------------------------
+
+    plot_window.show();
+
 }
 
 
