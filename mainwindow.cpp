@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     setWindowTitle(version);
 
-    connect( ui->pushButton, SIGNAL( clicked( bool ) ), SLOT( on_pushButton_clicked() ) );
+    //connect( ui->pushButton, SIGNAL( clicked( bool ) ), SLOT( on_pushButton_clicked() ) );
     connect( ui->radioButton, SIGNAL( clicked( bool ) ), SLOT( onGo() ) );
     connect( ui->comboBox, SIGNAL( clicked( bool ) ), SLOT( onGo() ) );
     connect( &m_manager, SIGNAL( finished( QNetworkReply* ) ), SLOT( onFinished( QNetworkReply* ) ) );
@@ -135,7 +135,6 @@ MainWindow::~MainWindow()
     }
 
     qDebug() << "Closed.";
-
     delete ui;
 }
 
@@ -192,15 +191,6 @@ void MainWindow::onFinished( QNetworkReply* reply ) {
     reply->deleteLater();
 }
 
-
-void MainWindow::on_pushButton_2_clicked()
-{
-    Second_window window;
-    window.setModal(true);
-    window.exec();
-}
-
-
 void MainWindow::on_comboBox_activated(int index)
 {
 
@@ -238,17 +228,32 @@ void MainWindow::on_comboBox_activated(int index)
     onGo();
 }
 
+
+
+void MainWindow::on_pushButton_2_clicked()   // Sofia window
+{
+    Second_window window;
+    window.setModal(true);
+    window.exec();
+}
+
+
 void MainWindow::on_pushButton_clicked()
 {
-    // ---------- activate the window diagram after minimizing ---------
-    plot_window.show();
-    if(plot_window.isMinimized())
-        plot_window.showNormal();
-    plot_window.raise();
-    plot_window.activateWindow();
-    //----------------------------------------------------
 
-    plot_window.show();
+    //=============================================================
+    if(!plot_window.isVisible() || plot_window.isMinimized()){
+        // ---------- activate the window diagram after minimizing ---------
+        plot_window.show();
+        if(plot_window.isMinimized()){
+            plot_window.showNormal();
+        }
+        //plot_window.raise();
+        plot_window.activateWindow();
+    }
+    else {
+        plot_window.close();
+    }
 
 }
 

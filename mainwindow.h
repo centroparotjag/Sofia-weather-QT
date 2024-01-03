@@ -67,11 +67,12 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    plot_window plot_window;
     QNetworkAccessManager m_manager;
     QTimer *timer;
 
 public:
-    plot_window plot_window;
+    //plot_window plot_window;
 
 };
 #endif // MAINWINDOW_H
