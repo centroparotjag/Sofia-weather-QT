@@ -115,6 +115,10 @@ QString MainWindow::unixTimeToHumanReadable(long int seconds)
     minutes = (extraTime % 3600) / 60;
     secondss = (extraTime % 3600) % 60;
 
+    h_u = hours;
+    m_u = minutes;
+
+
 //    ans.append(QString::number(date));
 //    ans.append(".");
 //    ans.append(QString::number(month));
@@ -130,6 +134,8 @@ QString MainWindow::unixTimeToHumanReadable(long int seconds)
     else{
         time_zone = 3;
     }
+
+    h_u += time_zone;
 
     ans.append(QString::number(hours + time_zone));
     //ans.append(QString::number(hours));                       // UTC

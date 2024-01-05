@@ -109,6 +109,7 @@ int last_update_hour = 55;
 void MainWindow::parser_request (QString data ){
     weather weather1;
 
+    weather1.id         = find_data(data, "id").toInt();
     weather1.temp       = find_data(data, "temp").toDouble();
     weather1.pressure   = find_data(data, "pressure").toInt();
     uint grnd_level     = find_data(data, "grnd_level").toInt();
@@ -118,7 +119,14 @@ void MainWindow::parser_request (QString data ){
     weather1.wind_deg   = find_data(data, "deg").toInt();
     weather1.sunrise    = find_data(data, "sunrise").toInt();
     weather1.sunset     = find_data(data, "sunset").toInt();
+    weather1.visibility = find_data(data, "visibility").toInt();
+    weather1.clouds     = find_data(data, "all").toInt();
+    weather1.description= what_is_in_the_sky_ParseData(data);
     weather1.city       = find_city(data);
+
+    visibility  = weather1.visibility;
+    clouds      = weather1.clouds;
+    description = weather1.description;
 
     weather1.directional_angle = (double)weather1.wind_deg/6;
 
@@ -131,27 +139,18 @@ void MainWindow::parser_request (QString data ){
     //------ Plot updates every hour --------------------------
     if (last_update_hour != hour && weather1.pressure != 0 && weather1.humidity != 0){
 
-//        test++;
-//        weather1.temp      =weather1.temp      +test;
-//        weather1.pressure  =weather1.pressure  +test;
-//        weather1.humidity  =weather1.humidity  +test;
-//        weather1.wind_speed=weather1.wind_speed+test;
-//        weather1.wind_deg  =weather1.wind_deg  +test;
-
         plot_window.plot_g1(weather1.temp-273.16, weather1.wind_speed, weather1.wind_deg,
                             weather1.pressure*0.75, weather1.humidity, count_data);
 
         count_data++;
         last_update_hour = hour;
     }
-
-    qDebug() << "Count data " << count_data;
-
     //--------------------------------------------------------
 
     //---------------- debug Log -----------------------------
     ui->textEdit->setTextColor(QColor::fromRgb(0,120,0));
     ui->textEdit->append("\n");
+    ui->textEdit->append("id = "  + QString::number(weather1.id));
     ui->textEdit->append("Temp = " + QString::number(weather1.temp) + " °K  /  " +
                                      QString::number(weather1.temp-273.16)  + " °C  /  " +
                                      QString::number((weather1.temp-273.16)*1.8+32, 'f', 2) + " °F");
@@ -185,7 +184,9 @@ void MainWindow::parser_request (QString data ){
     ui->textEdit->append("Sunrise - "+ unixTimeToHumanReadable(weather1.sunrise) +
                          " / Sunset - "+ unixTimeToHumanReadable(weather1.sunset));
 
-    ui->textEdit->append(what_is_in_the_sky_ParseData(data));
+    ui->textEdit->append(weather1.description +
+                         ", Clouds = "   + QString::number(weather1.clouds) + " %"+
+                         ", Visibility = "   + QString::number(weather1.visibility) + " m");
 
     ui->textEdit->append(weather1.city + "\n");
 
@@ -239,11 +240,12 @@ void MainWindow::parser_request (QString data ){
     ui->textEdit_wind_deg->setFontPointSize(10);
     ui->textEdit_wind_deg->append(QString::number(weather1.wind_deg) + " °");
 
-    ui->textEdit_state->clear();
-    ui->textEdit_state->setFontWeight(QFont::Bold);
-    ui->textEdit_state->setTextColor("green");
-    ui->textEdit_state->setFontPointSize(10);
-    ui->textEdit_state->append(what_is_in_the_sky_ParseData(data));
+//    ui->textEdit_state->clear();
+//    ui->textEdit_state->setFontWeight(QFont::Bold);
+//    ui->textEdit_state->setTextColor("green");
+//    ui->textEdit_state->setFontPointSize(10);
+//    ui->textEdit_state->append(what_is_in_the_sky_ParseData(data));
+    general_weather_conditions();
 
     ui->textEdit_Sun_up->clear();
     ui->textEdit_Sun_up->setFontWeight(QFont::Bold);
@@ -327,6 +329,58 @@ void MainWindow::parser_request (QString data ){
     ui->label_10->setPixmap(imagine);
 
     qDebug() << "path_image = " << path_image + image_name;
+
+
+    //----------------------- icon weather ------------------------------------
+    // https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2
+    //-------------------------------------------------------------------------
+    QString path_wi;
+    QString d_n="d";
+
+    //-------- day / night --------
+    unixTimeToHumanReadable(weather1.sunrise);
+    int h_r = h_u;
+    int m_r = m_u;
+    unixTimeToHumanReadable(weather1.sunset);
+    int h_s = h_u;
+    int m_s = m_u;
+
+    if ( ((h_r==hour && m_r<m_u) || h_r<hour) && ((h_s==hour && m_s>m_u) || h_s>hour) ){
+        d_n="d";            // day
+    }
+    else {
+        d_n="n";            // night
+    }
+
+    //---------- icon ---------------
+    if (weather1.id>=200 && weather1.id<=232){ path_wi = "11"; }
+    if (weather1.id>=300 && weather1.id<=321){ path_wi = "09"; }
+    if (weather1.id>=500 && weather1.id<=504){ path_wi = "10"; }
+    if (weather1.id==511){ path_wi = "13"; }
+    if (weather1.id>=520 && weather1.id<=531){ path_wi = "09"; }
+    if (weather1.id>=600 && weather1.id<=622){ path_wi = "13"; }
+    if (weather1.id>=701 && weather1.id<=781){ path_wi = "50"; }
+    if (weather1.id==800){ path_wi = "01"; }
+    if (weather1.id==801){ path_wi = "02"; }
+    if (weather1.id==802){ path_wi = "03"; }
+    if (weather1.id>=803 && weather1.id<=804){ path_wi = "04"; }
+
+    //--------- image ---------------
+    QPixmap imagine_wi (":/weather/image/" + path_wi + d_n + ".png");
+    QSize PicSize_wi(60, 60);  // resize picture
+    imagine_wi = imagine_wi.scaled(PicSize_wi,Qt::KeepAspectRatio);
+    ui->label_11->setPixmap(imagine_wi);
+    ui->label_11->repaint();
+    ui->label_11->setPixmap(imagine_wi);
+
+
+
+
+
+
+
+
+
 
 }
 

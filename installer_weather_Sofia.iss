@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Sofia Weather"
-#define MyAppVersion "2.2.4 Cat"
+#define MyAppVersion "2.2.5 Icon"
 #define MyAppPublisher "centroparotjag"
 #define MyAppExeName "WeatherInformerForSofia.exe"
 #define MyAppAssocName MyAppName + MyAppVersion + ""

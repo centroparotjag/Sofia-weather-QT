@@ -36,6 +36,7 @@ public:
 
 
     struct weather{
+        int id = 0;
         double temp = 0;
         int pressure = 0;
         int humidity = 0;
@@ -46,7 +47,18 @@ public:
         int sunrise = 0;
         int sunset = 0;
         QString city = "";
+        int visibility = 0;
+        int clouds = 0;
+        QString description = "";
+
     };
+
+    int visibility = 0;
+    int clouds = 0;
+    QString description = "";
+
+    int h_u = 0;
+    int m_u = 0;
 
 public:
     void parser_request (QString data);
@@ -64,6 +76,7 @@ private slots:
     void on_comboBox_activated(int index);
 
     void on_pushButton_clicked();
+    void general_weather_conditions();
 
 
 private:
@@ -71,6 +84,7 @@ private:
     plot_window plot_window;
     QNetworkAccessManager m_manager;
     QTimer *timer;
+    QTimer *timer5;
 
 public:
     //plot_window plot_window;

@@ -579,7 +579,7 @@ p, li { white-space: pre-wrap; }
          <rect>
           <x>169</x>
           <y>221</y>
-          <width>240</width>
+          <width>191</width>
           <height>42</height>
          </rect>
         </property>
@@ -816,7 +816,7 @@ p, li { white-space: pre-wrap; }
        <widget class="QLabel" name="label_10">
         <property name="geometry">
          <rect>
-          <x>369</x>
+          <x>370</x>
           <y>174</y>
           <width>40</width>
           <height>40</height>
@@ -824,6 +824,22 @@ p, li { white-space: pre-wrap; }
         </property>
         <property name="text">
          <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_11">
+        <property name="geometry">
+         <rect>
+          <x>365</x>
+          <y>216</y>
+          <width>45</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </widget>

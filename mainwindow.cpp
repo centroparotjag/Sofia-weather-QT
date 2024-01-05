@@ -33,6 +33,13 @@ MainWindow::MainWindow(QWidget *parent)
     timer->start();
 
 
+    timer5 = new QTimer(this);
+    timer5->setInterval(5000);         // 5000 = 5sec
+    connect(timer5, SIGNAL(timeout()), this, SLOT(general_weather_conditions()));
+    timer5->start();
+
+
+
 #ifdef QT_DEBUG     // debug
 
 #endif
@@ -255,6 +262,28 @@ void MainWindow::on_pushButton_clicked()
     else {
         plot_window.close();
     }
+}
 
+int tic5 = 0;
+void MainWindow::general_weather_conditions(){
+
+
+    ui->textEdit_state->clear();
+    ui->textEdit_state->setFontWeight(QFont::Bold);
+    ui->textEdit_state->setTextColor("green");
+    ui->textEdit_state->setFontPointSize(10);
+
+    if(tic5 == 0){
+        ui->textEdit_state->append(description);
+    }
+    if(tic5 == 1){
+        ui->textEdit_state->append("Хмарність " + QString::number(clouds) + "%");
+    }
+    if(tic5 == 2){
+        ui->textEdit_state->append("Видимість " + QString::number(visibility) + "м");
+    }
+
+
+    tic5 = tic5 == 2 ? tic5 = 0 : tic5 += 1 ;
 }
 
