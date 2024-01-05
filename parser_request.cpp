@@ -150,25 +150,40 @@ void MainWindow::parser_request (QString data ){
     //--------------------------------------------------------
 
     //---------------- debug Log -----------------------------
-    ui->textEdit->setTextColor(QColor::fromRgb(0,150,0));
+    ui->textEdit->setTextColor(QColor::fromRgb(0,120,0));
     ui->textEdit->append("\n");
-    ui->textEdit->append("temp K = "       + QString::number(weather1.temp));
-    ui->textEdit->append("temp C = "       + QString::number(weather1.temp-273.16));
-    ui->textEdit->append("pressure hPa (Sea level) = "  + QString::number(weather1.pressure));
-    ui->textEdit->append("pressure mmHg (Sea level) = " + QString::number((double)weather1.pressure*0.75));
-    ui->textEdit->append("pressure hPa (Grnd level) = "  + QString::number(grnd_level));
-    ui->textEdit->append("pressure mmHg (Grnd level) = " + QString::number((double)grnd_level*0.75));
-    ui->textEdit->append("humidity % = "   + QString::number(weather1.humidity));
-    ui->textEdit->append("wind_speed m/s= " + QString::number(weather1.wind_speed));
-    ui->textEdit->append("wind_gust m/s= " + QString::number(weather1.wind_gust));          //
-    ui->textEdit->append("wind_deg = "   + QString::number(weather1.wind_deg));
-    ui->textEdit->append("dir_angle = "  + QString::number(weather1.directional_angle));
-    ui->textEdit->append("sunrise Unix time (UTC) = "    + QString::number(weather1.sunrise));
-    ui->textEdit->append("sunset Unix time (UTC) = "     + QString::number(weather1.sunset));
+    ui->textEdit->append("Temp = " + QString::number(weather1.temp) + " °K  /  " +
+                                     QString::number(weather1.temp-273.16)  + " °C  /  " +
+                                     QString::number((weather1.temp-273.16)*1.8+32, 'f', 2) + " °F");
+
+    ui->textEdit->append("Pressure: Sea level = "  + QString::number(weather1.pressure) + " hPa  /  " +
+                          QString::number((double)weather1.pressure*0.75) +  " mmHg");
 
 
-    ui->textEdit->append("sunrise - "+ unixTimeToHumanReadable(weather1.sunrise));
-    ui->textEdit->append("sunset - "+ unixTimeToHumanReadable(weather1.sunset));
+    ui->textEdit->append("Pressure: Gnd level = "  + QString::number(grnd_level) + " hPa  /  " +
+                          QString::number((double)grnd_level*0.75) + " mmHg");
+
+    ui->textEdit->append("Humidity      = "   + QString::number(weather1.humidity) + " %");
+
+    ui->textEdit->append("Wind speed = " + QString::number(weather1.wind_speed, 'f', 2) + " m/s, " +
+                                           QString::number((weather1.wind_speed/1000)*3600, 'f', 2) + " km/h, "+
+                                           QString::number(weather1.wind_speed*1.94384449, 'f', 2) + " kt, " +
+                                           QString::number(weather1.wind_speed*2.2369, 'f', 2) + " mph");
+
+    ui->textEdit->append("Wind gust    = " + QString::number(weather1.wind_gust, 'f', 2) + " m/s, " +
+                                           QString::number((weather1.wind_gust/1000)*3600, 'f', 2) + " km/h, "+
+                                           QString::number(weather1.wind_gust*1.94384449, 'f', 2) + " kt, " +
+                                           QString::number(weather1.wind_gust*2.2369, 'f', 2) + " mph" );
+
+    ui->textEdit->append("Wind_deg = "   + QString::number(weather1.wind_deg) + "°,  " +
+                         "Dir(60-00) = "  + QString::number(weather1.directional_angle, 'f', 2)  + ",  " +
+                         "Dir(64-00) = "  + QString::number(weather1.wind_deg/5.625, 'f', 2));
+
+    ui->textEdit->append("Unix time (UTC): Sunrise= " + QString::number(weather1.sunrise) +
+                                      " / Sunset = " + QString::number(weather1.sunset));
+
+    ui->textEdit->append("Sunrise - "+ unixTimeToHumanReadable(weather1.sunrise) +
+                         " / Sunset - "+ unixTimeToHumanReadable(weather1.sunset));
 
     ui->textEdit->append(what_is_in_the_sky_ParseData(data));
 
@@ -190,7 +205,8 @@ void MainWindow::parser_request (QString data ){
         ui->textEdit_temperatura->setTextColor("DeepPink");
     }
     ui->textEdit_temperatura->setFontPointSize(10);
-    ui->textEdit_temperatura->append(QString::number(weather1.temp-273.16) + " °C");
+    ui->textEdit_temperatura->append(QString::number(weather1.temp-273.16) + " °C   /   " +
+                                     QString::number((weather1.temp-273.16)*1.8+32, 'f', 2) + " °F");
 
 
     ui->textEdit_humidity->clear();

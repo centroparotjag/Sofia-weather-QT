@@ -82,6 +82,8 @@ MainWindow::MainWindow(QWidget *parent)
         ui->comboBox->setCurrentIndex(settings.value(SETTINGS_CITY, 0).toInt());
         on_comboBox_activated(ui->comboBox->currentIndex());
 
+        ui->groupBox->setToolTip("Виведення часу сходу заходу сонця, тривалості дня.\n"
+                                 "Перехід на зимній(UTC+2)/літній(UTC+3) час відбувається включенням/виключення часовго поясу - Зима");
 
         ui->pushButton->setToolTip("Виведення графіків змін метеоданних.\n"
                                     "Накопичення данних відбувається від моменту запуску програми до її закриття.\n"
@@ -97,7 +99,7 @@ MainWindow::MainWindow(QWidget *parent)
                                               "Період оновлення метеоданних становить 5хв.");
 
 
-        ui->textEdit_temperatura->setToolTip("Відображення температури в градусах цельсія.");
+        ui->textEdit_temperatura->setToolTip("Відображення температури в градусах цельсія / градусах фаренгейта");
         ui->textEdit_humidity->setToolTip   ("Відображення відносної вологості у відсотках.");
         ui->textEdit_pressure->setToolTip   ("Відображення атмосферного тиску на рівні моря в міліметрах ртутного стовпа.\n"
                                              "Відображення атмосферного тиску на рівні землі -РЗ.");
@@ -152,9 +154,8 @@ void MainWindow::onGo() {
     ui->textEdit->setFontWeight(QFont::Bold);
     ui->textEdit->setTextColor(QColor::fromRgb(29,4,255));         // QColor::fromRgb(0,20,50)
     ui->textEdit->append( "********************************************************************" );
-    ui->textEdit->append( "********************************************************************");
     ui->textEdit->append(QDateTime::currentDateTime().toString("dd.MM.yyyy HH:mm:ss") + "\n");
-    ui->textEdit->append( "urlText - " + urlText + "\n" );
+    ui->textEdit->append( urlText + "\n" );
 
 //    ui->textEdit_time_request->clear();
 //    ui->textEdit_time_request->setFontPointSize(10);
@@ -174,6 +175,7 @@ void MainWindow::onFinished( QNetworkReply* reply ) {
         ui->textEdit_time_request->setFontWeight(QFont::Bold);
         ui->textEdit_time_request->setTextColor(QColor::fromRgb(0, 0, 0));
         ui->textEdit_time_request->append("Оновлено " +QDateTime::currentDateTime().toString("HH:mm:ss dd.MM.yyyy"));
+        ui->textEdit_time_request->setAlignment(Qt::AlignRight);
 
         QString data = QString::fromUtf8( reply->readAll() );
         ui->textEdit->setTextColor(QColor::fromRgb(200,0,0));

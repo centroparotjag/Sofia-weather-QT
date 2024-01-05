@@ -37,10 +37,10 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>10</x>
      <y>10</y>
-     <width>641</width>
-     <height>111</height>
+     <width>671</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="font">
@@ -51,17 +51,23 @@
      <bold>true</bold>
     </font>
    </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
    <property name="text">
     <string>Я тебе люблю</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
      <x>130</x>
-     <y>90</y>
+     <y>100</y>
      <width>391</width>
-     <height>281</height>
+     <height>271</height>
     </rect>
    </property>
    <property name="layoutDirection">
