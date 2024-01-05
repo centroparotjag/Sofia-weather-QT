@@ -10,6 +10,7 @@ using namespace std;
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+ #define UNUSED(expr) do { (void)(expr); } while (0)
 
 // Function to convert unix time to
 // Human readable format
@@ -28,6 +29,9 @@ QString MainWindow::unixTimeToHumanReadable(long int seconds)
     long int currYear, daysTillNow, extraTime, extraDays,
         index, date, month, hours, minutes, secondss,
         flag = 0;
+
+    UNUSED(date);
+
 
     // Calculate total days unix time T
     daysTillNow = seconds / (24 * 60 * 60);

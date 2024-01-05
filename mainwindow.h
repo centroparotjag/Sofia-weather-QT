@@ -65,6 +65,7 @@ private slots:
 
     void on_pushButton_clicked();
 
+
 private:
     Ui::MainWindow *ui;
     plot_window plot_window;

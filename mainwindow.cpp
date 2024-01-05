@@ -240,8 +240,7 @@ void MainWindow::on_pushButton_2_clicked()   // Sofia window
 
 void MainWindow::on_pushButton_clicked()
 {
-
-    //=============================================================
+     //=============================================================
     if(!plot_window.isVisible() || plot_window.isMinimized()){
         // ---------- activate the window diagram after minimizing ---------
         plot_window.show();
@@ -256,5 +255,4 @@ void MainWindow::on_pushButton_clicked()
     }
 
 }
-
 

@@ -2,6 +2,9 @@
 #include <ui_plot_window.h>
 #include "mainwindow.h"
 
+#define UNUSED(expr) do { (void)(expr); } while (0)
+
+
 plot_window::plot_window(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::plot_window)
@@ -242,6 +245,7 @@ void plot_window::MinMaxPlot(double temp, double speedwind, double deflWind, dou
 
 
 void plot_window::set_the_graph_range(double border){
+    UNUSED(border);
     // Tmin, Tmax, Smin, Smax, Dmin, Dmax, Pmin, Pmax, Hmin, Hmax
 //        ui->temp->yAxis->setRange     (Tmin - border, Tmax + border);
 //        ui->speedwind->yAxis->setRange(Smin - border, Smax + border);
