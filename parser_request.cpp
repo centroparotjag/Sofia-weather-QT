@@ -373,7 +373,7 @@ void MainWindow::parser_request (QString data ){
     ui->label_11->repaint();
     ui->label_11->setPixmap(imagine_wi);
 
-
+    qDebug() << "path image = " << ":/weather/image/" + path_wi + d_n + ".png";
 
 
 
