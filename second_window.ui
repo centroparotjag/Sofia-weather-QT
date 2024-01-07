@@ -37,15 +37,15 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>671</width>
+     <x>6</x>
+     <y>18</y>
+     <width>690</width>
      <height>71</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Arial Black</family>
+     <family>Candara</family>
      <pointsize>48</pointsize>
      <weight>75</weight>
      <bold>true</bold>
@@ -61,7 +61,7 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="label_1">
    <property name="geometry">
     <rect>
      <x>130</x>
@@ -80,7 +80,27 @@
     <pixmap resource="res.qrc">:/res/image/kat.png</pixmap>
    </property>
   </widget>
-  <zorder>label</zorder>
+  <widget class="QLabel" name="label_GIF">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>701</width>
+     <height>371</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <zorder>label_GIF</zorder>
+  <zorder>label_1</zorder>
   <zorder>label_2</zorder>
  </widget>
  <resources>

@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Sofia Weather"
-#define MyAppVersion "2.2.5 Icon"
+#define MyAppVersion "2.2.6 Animation"
 #define MyAppPublisher "centroparotjag"
 #define MyAppExeName "WeatherInformerForSofia.exe"
 #define MyAppAssocName MyAppName + MyAppVersion + ""
@@ -52,7 +52,7 @@ Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 
 [Files]
-Source: "D:\Projekt\QT_prj\Sofia_weather\Sofia-weather-QT\sources\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+;Source: "D:\Projekt\QT_prj\Sofia_weather\Sofia-weather-QT\sources\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
                       
 
 [Run]

@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/res">
         <file>image/kat.png</file>
+        <file>image/Falling_flowers.gif</file>
     </qresource>
     <qresource prefix="/weather">
         <file>image/01d.png</file>
@@ -21,5 +22,31 @@
         <file>image/13n.png</file>
         <file>image/50d.png</file>
         <file>image/50n.png</file>
+    </qresource>
+    <qresource prefix="/wind_arrow">
+        <file>image/wind_arrow/WA_0.png</file>
+        <file>image/wind_arrow/WA_15.png</file>
+        <file>image/wind_arrow/WA_30.png</file>
+        <file>image/wind_arrow/WA_45.png</file>
+        <file>image/wind_arrow/WA_60.png</file>
+        <file>image/wind_arrow/WA_75.png</file>
+        <file>image/wind_arrow/WA_90.png</file>
+        <file>image/wind_arrow/WA_105.png</file>
+        <file>image/wind_arrow/WA_120.png</file>
+        <file>image/wind_arrow/WA_135.png</file>
+        <file>image/wind_arrow/WA_150.png</file>
+        <file>image/wind_arrow/WA_165.png</file>
+        <file>image/wind_arrow/WA_180.png</file>
+        <file>image/wind_arrow/WA_195.png</file>
+        <file>image/wind_arrow/WA_210.png</file>
+        <file>image/wind_arrow/WA_225.png</file>
+        <file>image/wind_arrow/WA_240.png</file>
+        <file>image/wind_arrow/WA_255.png</file>
+        <file>image/wind_arrow/WA_270.png</file>
+        <file>image/wind_arrow/WA_285.png</file>
+        <file>image/wind_arrow/WA_300.png</file>
+        <file>image/wind_arrow/WA_315.png</file>
+        <file>image/wind_arrow/WA_330.png</file>
+        <file>image/wind_arrow/WA_345.png</file>
     </qresource>
 </RCC>

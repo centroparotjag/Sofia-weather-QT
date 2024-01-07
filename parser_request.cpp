@@ -277,23 +277,10 @@ void MainWindow::parser_request (QString data ){
 
     //--------------- wind direction indicator ---------------
 
-    QString path_image;
-//    #ifdef QT_DEBUG     // debug
-//       path_image = "D:/Projekt/QT_prj/Sofia_weather/Sofia-weather-QT/sources/wind_arrow/";
-//    #endif
-
-//    #ifndef QT_DEBUG    // release
-//      //path_image = ":/wind_arrow/";   // do not work???
-//      path_image = QDir::currentPath() + "/wind_arrow/";
-//    #endif
-
-      path_image = QDir::currentPath() + "/wind_arrow/";
-
-
     QString image_name;
     if (weather1.wind_deg>=352 || weather1.wind_deg<7){ image_name = "WA_0.png"; }
 
-    if (weather1.wind_deg>=7 && weather1.wind_deg<22){ image_name = "WA_15.png"; }
+    if (weather1.wind_deg>=7 && weather1.wind_deg<22) { image_name = "WA_15.png"; }
     if (weather1.wind_deg>=22 && weather1.wind_deg<37){ image_name = "WA_30.png"; }
     if (weather1.wind_deg>=37 && weather1.wind_deg<52){ image_name = "WA_45.png"; }
     if (weather1.wind_deg>=52 && weather1.wind_deg<67){ image_name = "WA_60.png"; }
@@ -320,7 +307,7 @@ void MainWindow::parser_request (QString data ){
     if (weather1.wind_deg>=322 && weather1.wind_deg<337){ image_name = "WA_330.png"; }
     if (weather1.wind_deg>=337 && weather1.wind_deg<352){ image_name = "WA_345.png"; }
 
-    QPixmap imagine (path_image + image_name);
+    QPixmap imagine (":/wind_arrow/image/wind_arrow/" + image_name);
 
     QSize PicSize(40, 40);  // resize picture
     imagine = imagine.scaled(PicSize,Qt::KeepAspectRatio);
@@ -328,7 +315,7 @@ void MainWindow::parser_request (QString data ){
     ui->label_10->repaint();
     ui->label_10->setPixmap(imagine);
 
-    qDebug() << "path_image = " << path_image + image_name;
+    //qDebug() << "path_image = " << ":/wind_arrow/image/wind_arrow/" + image_name;
 
 
     //----------------------- icon weather ------------------------------------
@@ -373,14 +360,6 @@ void MainWindow::parser_request (QString data ){
     ui->label_11->repaint();
     ui->label_11->setPixmap(imagine_wi);
 
-    qDebug() << "path image = " << ":/weather/image/" + path_wi + d_n + ".png";
-
-
-
-
-
-
-
-
+    //qDebug() << "path image = " << ":/weather/image/" + path_wi + d_n + ".png";
 }
 

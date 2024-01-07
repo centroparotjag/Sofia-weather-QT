@@ -9,7 +9,7 @@
 
 #include <QDebug>
 
-QString version ="V2.2.4";
+QString version ="V2.2.6 Animation";
 int id=710719;              // Чернівці default
 
 MainWindow::MainWindow(QWidget *parent)
@@ -267,7 +267,6 @@ void MainWindow::on_pushButton_clicked()
 int tic5 = 0;
 void MainWindow::general_weather_conditions(){
 
-
     ui->textEdit_state->clear();
     ui->textEdit_state->setFontWeight(QFont::Bold);
     ui->textEdit_state->setTextColor("green");
@@ -282,7 +281,6 @@ void MainWindow::general_weather_conditions(){
     if(tic5 == 2){
         ui->textEdit_state->append("Видимість " + QString::number(visibility) + "м");
     }
-
 
     tic5 = tic5 == 2 ? tic5 = 0 : tic5 += 1 ;
 }

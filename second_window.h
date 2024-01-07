@@ -2,6 +2,7 @@
 #define SECOND_WINDOW_H
 
 #include <QDialog>
+#include <QMovie>
 
 namespace Ui {
 class Second_window;
@@ -18,6 +19,9 @@ public:
 
 private:
     Ui::Second_window *ui;
+
+public:
+    QMovie *movie;
 };
 
 
