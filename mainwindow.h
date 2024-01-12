@@ -60,6 +60,8 @@ public:
     int h_u = 0;
     int m_u = 0;
 
+    int tic5 = 0;
+
 public:
     void parser_request (QString data);
     QString find_data(QString data, QString search);

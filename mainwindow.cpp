@@ -9,7 +9,7 @@
 
 #include <QDebug>
 
-QString version ="V2.2.6 Animation";
+QString version ="V2.2.7";
 int id=710719;              // Чернівці default
 
 MainWindow::MainWindow(QWidget *parent)
@@ -110,7 +110,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->textEdit_humidity->setToolTip   ("Відображення відносної вологості у відсотках.");
         ui->textEdit_pressure->setToolTip   ("Відображення атмосферного тиску на рівні моря в міліметрах ртутного стовпа.\n"
                                              "Відображення атмосферного тиску на рівні землі -РЗ.");
-        ui->textEdit_wind->setToolTip   ("Відображення сили вітру в метрах за секунду.");
+        ui->textEdit_wind->setToolTip   ("Відображення сили вітру в метрах за секунду (пориви вітру в метрах за секунду)");
         ui->textEdit_wind_deg->setToolTip   ("Відображення напрямку вітру в градусах (360°).");
         ui->textEdit_state->setToolTip      ("Відображення станну неба: ясно, хмарно, дощь ...");
 
@@ -215,10 +215,10 @@ void MainWindow::on_comboBox_activated(int index)
         case 8:  id=687700; break;      //"Запоріжжя"
         case 9:  id=706369; break;      //"Хмельницький"
         case 10: id=702569; break;      //"Луцьк"
-        case 11: id=4166787; break;      //"Одеса"
-        case 12: id=7046809; break;      //"Рівне"
+        case 11: id=698740; break;      //"Одеса"
+        case 12: id=695594; break;      //"Рівне"
         case 13: id=696643; break;      //"Полтава"
-        case 14: id=700568; break;      //"Миколаїв"
+        case 14: id=700569; break;      //"Миколаїв"
         case 15: id=710791; break;      //"Черкаси"
         case 16: id=686967; break;      //"Житомир"
         case 17: id=705812; break;      //"Кропивницький"
@@ -264,7 +264,7 @@ void MainWindow::on_pushButton_clicked()
     }
 }
 
-int tic5 = 0;
+
 void MainWindow::general_weather_conditions(){
 
     ui->textEdit_state->clear();
