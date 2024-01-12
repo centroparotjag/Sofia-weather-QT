@@ -9,7 +9,7 @@
 
 #include <QDebug>
 
-QString version ="V2.2.7";
+QString version ="V2.2.8";
 int id=710719;              // Чернівці default
 
 MainWindow::MainWindow(QWidget *parent)
@@ -102,7 +102,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->comboBox->setToolTip   ("Вибір населенного пункту для відображення погоди.\n"
                                     "В списку всі обласні центри України.");
 
-        ui->textEdit_time_request->setToolTip("Відображення часу крайнього оновлення метеоданних головного вікна.\n"
+        ui->label_time_request->setToolTip("Відображення часу крайнього оновлення метеоданних головного вікна.\n"
                                               "Період оновлення метеоданних становить 5хв.");
 
 
@@ -113,6 +113,9 @@ MainWindow::MainWindow(QWidget *parent)
         ui->textEdit_wind->setToolTip   ("Відображення сили вітру в метрах за секунду (пориви вітру в метрах за секунду)");
         ui->textEdit_wind_deg->setToolTip   ("Відображення напрямку вітру в градусах (360°).");
         ui->textEdit_state->setToolTip      ("Відображення станну неба: ясно, хмарно, дощь ...");
+
+
+        style_my();
 
    }
 
@@ -177,12 +180,10 @@ void MainWindow::onFinished( QNetworkReply* reply ) {
     if( reply->error() == QNetworkReply::NoError ) {
 
         //------ Print data update time ----------
-        ui->textEdit_time_request->clear();
-        ui->textEdit_time_request->setFontPointSize(10);
-        ui->textEdit_time_request->setFontWeight(QFont::Bold);
-        ui->textEdit_time_request->setTextColor(QColor::fromRgb(0, 0, 0));
-        ui->textEdit_time_request->append("Оновлено " +QDateTime::currentDateTime().toString("HH:mm:ss dd.MM.yyyy"));
-        ui->textEdit_time_request->setAlignment(Qt::AlignRight);
+        ui->label_time_request->clear();
+        ui->label_time_request->setAlignment(Qt::AlignRight);
+        ui->label_time_request->setText("Оновлено " +QDateTime::currentDateTime().toString("HH:mm:ss dd.MM.yyyy"));
+
 
         QString data = QString::fromUtf8( reply->readAll() );
         ui->textEdit->setTextColor(QColor::fromRgb(200,0,0));
@@ -282,6 +283,6 @@ void MainWindow::general_weather_conditions(){
         ui->textEdit_state->append("Видимість " + QString::number(visibility) + "м");
     }
 
-    tic5 = tic5 == 2 ? tic5 = 0 : tic5 += 1 ;
+    tic5 = tic5 >= 2 ? tic5 = 0 : tic5 += 1 ;
 }
 

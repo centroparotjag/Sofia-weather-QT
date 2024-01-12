@@ -20,7 +20,8 @@ SOURCES += \
     mainwindow.cpp \
     plot_window.cpp \
     qcustomplot.cpp \
-    second_window.cpp
+    second_window.cpp \
+    style_my.cpp
 
 HEADERS += \
     mainwindow.h \

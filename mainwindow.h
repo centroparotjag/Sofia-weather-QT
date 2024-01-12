@@ -79,6 +79,7 @@ private slots:
 
     void on_pushButton_clicked();
     void general_weather_conditions();
+    void style_my(void);
 
 
 private:
