@@ -104,7 +104,6 @@ QString MainWindow::find_city(QString data){
 
 uint count_data = 0;
 int last_update_hour = 55;
-//int test = 0;
 
 void MainWindow::parser_request (QString data ){
     weather weather1;
@@ -135,6 +134,15 @@ void MainWindow::parser_request (QString data ){
     int hour = ct.toString("h").toInt();
     int min = ct.toString("m").toInt();
     qDebug() << "hour " << hour<< ", min " << min;
+
+
+//    //+++++++++++++++ TEST +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//    plot_window.plot_g1(weather1.temp-273.16 - count_data, weather1.wind_speed + count_data, weather1.wind_deg + count_data,
+//                        weather1.pressure*0.75 + count_data, weather1.humidity + count_data, count_data);
+//    count_data++;
+//    //+++++++++++++++ TEST ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
 
     //------ Plot updates every hour --------------------------
     if (last_update_hour != hour && weather1.pressure != 0 && weather1.humidity != 0){

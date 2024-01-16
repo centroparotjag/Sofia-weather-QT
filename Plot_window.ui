@@ -12,14 +12,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>610</width>
-    <height>512</height>
+    <width>633</width>
+    <height>538</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>610</width>
-    <height>512</height>
+    <width>633</width>
+    <height>510</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -34,13 +34,33 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+								text-align: bottom
+                                }</string>
+     </property>
      <property name="text">
       <string>T max/min</string>
      </property>
     </widget>
    </item>
    <item row="0" column="1" rowspan="4">
-    <widget class="QCustomPlot" name="temp" native="true"/>
+    <widget class="QCustomPlot" name="temp" native="true">
+     <property name="styleSheet">
+      <string notr="true">QCustomPlot {background-color: #f0f0f0;
+                                border-top: 10px solid rgba(160, 160, 160, 255);
+                                border-left: 10px solid rgba(160, 160, 160, 255);
+                                border-right: 10px solid rgba(255, 255, 255, 255);
+                                border-bottom: 10px solid rgba(255, 255, 255, 255);
+                                }</string>
+     </property>
+    </widget>
    </item>
    <item row="1" column="0">
     <widget class="QLabel" name="label_Tmax">
@@ -49,6 +69,16 @@
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
      </property>
      <property name="text">
       <string>T max</string>
@@ -66,6 +96,16 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
+     </property>
      <property name="text">
       <string>T min</string>
      </property>
@@ -82,6 +122,16 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
+     </property>
      <property name="text">
       <string>Δ</string>
      </property>
@@ -94,6 +144,17 @@
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+								text-align: bottom
+                                }</string>
      </property>
      <property name="text">
       <string>S max/min</string>
@@ -111,6 +172,16 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
+     </property>
      <property name="text">
       <string>S max</string>
      </property>
@@ -126,6 +197,16 @@
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
      </property>
      <property name="text">
       <string>S min</string>
@@ -143,6 +224,16 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
+     </property>
      <property name="text">
       <string>Δ</string>
      </property>
@@ -155,6 +246,17 @@
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+								text-align: bottom
+                                }</string>
      </property>
      <property name="text">
       <string>d max/min</string>
@@ -172,6 +274,16 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
+     </property>
      <property name="text">
       <string>D max</string>
      </property>
@@ -187,6 +299,16 @@
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
      </property>
      <property name="text">
       <string>D min</string>
@@ -204,6 +326,16 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
+     </property>
      <property name="text">
       <string>Δ</string>
      </property>
@@ -216,6 +348,17 @@
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+								text-align: bottom
+                                }</string>
      </property>
      <property name="text">
       <string>P max/min</string>
@@ -232,6 +375,16 @@
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
      </property>
      <property name="text">
       <string>P max</string>
@@ -252,6 +405,16 @@
      <property name="autoFillBackground">
       <bool>false</bool>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
+     </property>
      <property name="text">
       <string>P min</string>
      </property>
@@ -268,6 +431,16 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
+     </property>
      <property name="text">
       <string>Δ</string>
      </property>
@@ -280,6 +453,17 @@
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+								text-align: bottom
+                                }</string>
      </property>
      <property name="text">
       <string>h max/min</string>
@@ -297,6 +481,16 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
+     </property>
      <property name="text">
       <string>H max</string>
      </property>
@@ -313,6 +507,16 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
+     </property>
      <property name="text">
       <string>H min</string>
      </property>
@@ -328,6 +532,16 @@
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
      </property>
      <property name="text">
       <string>Δ</string>

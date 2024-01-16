@@ -4,7 +4,6 @@
 
 #define UNUSED(expr) do { (void)(expr); } while (0)
 
-
 plot_window::plot_window(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::plot_window)
@@ -12,10 +11,18 @@ plot_window::plot_window(QWidget *parent) :
     ui->setupUi(this);
     this->setGeometry(480, 40, 610, 512);  // open window where
 
+
+    QPen pen;
+    pen.setWidth(2);
+    //pen.setBrush(QBrush(QColor(0, 0, 255, 20))); // first graph will be filled with translucent blue
+    pen.setColor(QColor(48,0,255));              // line color blue for first grap
+
     // temperature
     ui->temp->addGraph();
-    ui->temp->graph(0);
-    ui->temp->graph(1);
+    ui->temp->setBackground(QColor(240, 240, 240));
+//    ui->temp->graph()->setScatterStyle(QCPScatterStyle::ssCircle);   // style point
+//    ui->temp->graph(0)->setBrush(QBrush(QColor(0, 0, 255, 20))); // first graph will be filled with translucent blue
+    ui->temp->graph(0)->setPen(pen);
     ui->temp->setInteraction(QCP::iRangeZoom,true);     // Включаем взаимодействие удаления/приближения
     ui->temp->setInteraction(QCP::iRangeDrag, true);    // Включаем взаимодействие перетаскивания графика
     //ui->temp->axisRect()->setRangeDrag(Qt::Vertical);   // Включаем перетаскивание только по Vertical оси
@@ -27,8 +34,10 @@ plot_window::plot_window(QWidget *parent) :
 
     // speed wind
     ui->speedwind->addGraph();
-    ui->speedwind->graph(0);
-    ui->speedwind->graph(1);
+    ui->speedwind->setBackground(QColor(240, 240, 240));
+//    ui->speedwind->graph()->setScatterStyle(QCPScatterStyle::ssCircle);   // style point
+//    ui->speedwind->graph(0)->setBrush(QBrush(QColor(0, 0, 255, 20))); // first graph will be filled with translucent blue
+    ui->speedwind->graph(0)->setPen(pen);
     ui->speedwind->setInteraction(QCP::iRangeZoom,true);     // Включаем взаимодействие удаления/приближения
     ui->speedwind->setInteraction(QCP::iRangeDrag, true);    // Включаем взаимодействие перетаскивания графика
     //ui->speedwind->axisRect()->setRangeDrag(Qt::Vertical);   // Включаем перетаскивание только по Vertical оси
@@ -41,6 +50,10 @@ plot_window::plot_window(QWidget *parent) :
 
     // deflection wind
     ui->deflWind->addGraph();
+    ui->deflWind->setBackground(QColor(240, 240, 240));
+//    ui->deflWind->graph()->setScatterStyle(QCPScatterStyle::ssCircle);   // style point
+//    ui->deflWind->graph(0)->setBrush(QBrush(QColor(0, 0, 255, 20))); // first graph will be filled with translucent blue
+    ui->deflWind->graph(0)->setPen(pen);
     ui->deflWind->setInteraction(QCP::iRangeZoom,true);     // Включаем взаимодействие удаления/приближения
     ui->deflWind->setInteraction(QCP::iRangeDrag, true);    // Включаем взаимодействие перетаскивания графика
     //ui->deflWind->axisRect()->setRangeDrag(Qt::Vertical);   // Включаем перетаскивание только по Vertical оси
@@ -53,8 +66,10 @@ plot_window::plot_window(QWidget *parent) :
 
     // pressure
     ui->pressure->addGraph();
-    ui->pressure->graph(0);
-    ui->pressure->graph(1);
+    ui->pressure->setBackground(QColor(240, 240, 240));
+//    ui->pressure->graph()->setScatterStyle(QCPScatterStyle::ssCircle);   // style point
+//    ui->pressure->graph(0)->setBrush(QBrush(QColor(0, 0, 255, 20))); // first graph will be filled with translucent blue
+    ui->pressure->graph(0)->setPen(pen);
     ui->pressure->setInteraction(QCP::iRangeZoom,true);     // Включаем взаимодействие удаления/приближения
     ui->pressure->setInteraction(QCP::iRangeDrag, true);    // Включаем взаимодействие перетаскивания графика
     //ui->pressure->axisRect()->setRangeDrag(Qt::Vertical);   // Включаем перетаскивание только по Vertical оси
@@ -66,8 +81,10 @@ plot_window::plot_window(QWidget *parent) :
 
     // humidity
     ui->humidity->addGraph();
-    ui->humidity->graph(0);
-    ui->humidity->graph(1);
+    ui->humidity->setBackground(QColor(240, 240, 240));
+//    ui->humidity->graph()->setScatterStyle(QCPScatterStyle::ssCircle);   // style point
+//    ui->humidity->graph(0)->setBrush(QBrush(QColor(0, 0, 255, 20))); // first graph will be filled with translucent blue
+    ui->humidity->graph(0)->setPen(pen);
     ui->humidity->setInteraction(QCP::iRangeZoom,true);     // Включаем взаимодействие удаления/приближения
     ui->humidity->setInteraction(QCP::iRangeDrag, true);    // Включаем взаимодействие перетаскивания графика
     //ui->humidity->axisRect()->setRangeDrag(Qt::Vertical);   // Включаем перетаскивание только по Vertical оси
@@ -260,8 +277,6 @@ void plot_window::set_the_graph_range(double border){
     ui->humidity->yAxis->setRange (Hmin - ((Hmax-Hmin + 0.1)/5), Hmax + ((Hmax-Hmin + 0.1)/5));
 
 }
-
-
 
 
 
