@@ -34,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     timer5 = new QTimer(this);
-    timer5->setInterval(5000);         // 5000 = 5sec
+    timer5->setInterval(3000);         // 3000 = 3sec
     connect(timer5, SIGNAL(timeout()), this, SLOT(general_weather_conditions()));
     timer5->start();
 

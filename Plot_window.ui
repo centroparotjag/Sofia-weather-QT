@@ -13,7 +13,7 @@
     <x>0</x>
     <y>0</y>
     <width>633</width>
-    <height>538</height>
+    <height>510</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -26,8 +26,8 @@
    <string>Графік змін метеоданних</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QLabel" name="T">
+   <item row="10" column="0">
+    <widget class="QLabel" name="d">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
        <horstretch>0</horstretch>
@@ -46,42 +46,7 @@
                                 }</string>
      </property>
      <property name="text">
-      <string>T max/min</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1" rowspan="4">
-    <widget class="QCustomPlot" name="temp" native="true">
-     <property name="styleSheet">
-      <string notr="true">QCustomPlot {background-color: #f0f0f0;
-                                border-top: 10px solid rgba(160, 160, 160, 255);
-                                border-left: 10px solid rgba(160, 160, 160, 255);
-                                border-right: 10px solid rgba(255, 255, 255, 255);
-                                border-bottom: 10px solid rgba(255, 255, 255, 255);
-                                }</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label_Tmax">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QLabel {background-color: #f0f0f0;
-                                min-height: 18px;
-                                min-width: 70px;
-                                border-top: 1px solid rgba(160, 160, 160, 255);
-                                border-left: 1px solid rgba(160, 160, 160, 255);
-                                border-right: 1px solid rgba(255, 255, 255, 255);
-                                border-bottom: 1px solid rgba(255, 255, 255, 255);
-                                }</string>
-     </property>
-     <property name="text">
-      <string>T max</string>
+      <string>d max/min</string>
      </property>
     </widget>
    </item>
@@ -111,33 +76,48 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="0">
-    <widget class="QLabel" name="delta_T">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QLabel {background-color: #f0f0f0;
-                                min-height: 18px;
-                                min-width: 70px;
-                                border-top: 1px solid rgba(160, 160, 160, 255);
-                                border-left: 1px solid rgba(160, 160, 160, 255);
-                                border-right: 1px solid rgba(255, 255, 255, 255);
-                                border-bottom: 1px solid rgba(255, 255, 255, 255);
-                                }</string>
-     </property>
-     <property name="text">
-      <string>Δ</string>
+   <item row="20" column="1" rowspan="5">
+    <widget class="QCustomPlot" name="humidity" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>532</width>
+       <height>98</height>
+      </size>
      </property>
     </widget>
    </item>
-   <item row="4" column="0">
+   <item row="24" column="0">
+    <spacer name="verticalSpacer_5">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="1" rowspan="5">
+    <widget class="QCustomPlot" name="temp" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>532</width>
+       <height>98</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QCustomPlot {background-color: #f0f0f0;
+                                border-top: 10px solid rgba(160, 160, 160, 255);
+                                border-left: 10px solid rgba(160, 160, 160, 255);
+                                border-right: 10px solid rgba(255, 255, 255, 255);
+                                border-bottom: 10px solid rgba(255, 255, 255, 255);
+                                }</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
     <widget class="QLabel" name="S">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -161,86 +141,8 @@
      </property>
     </widget>
    </item>
-   <item row="4" column="1" rowspan="4">
-    <widget class="QCustomPlot" name="speedwind" native="true"/>
-   </item>
-   <item row="5" column="0">
-    <widget class="QLabel" name="label_Smax">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QLabel {background-color: #f0f0f0;
-                                min-height: 18px;
-                                min-width: 70px;
-                                border-top: 1px solid rgba(160, 160, 160, 255);
-                                border-left: 1px solid rgba(160, 160, 160, 255);
-                                border-right: 1px solid rgba(255, 255, 255, 255);
-                                border-bottom: 1px solid rgba(255, 255, 255, 255);
-                                }</string>
-     </property>
-     <property name="text">
-      <string>S max</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="0">
-    <widget class="QLabel" name="label_Smin">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QLabel {background-color: #f0f0f0;
-                                min-height: 18px;
-                                min-width: 70px;
-                                border-top: 1px solid rgba(160, 160, 160, 255);
-                                border-left: 1px solid rgba(160, 160, 160, 255);
-                                border-right: 1px solid rgba(255, 255, 255, 255);
-                                border-bottom: 1px solid rgba(255, 255, 255, 255);
-                                }</string>
-     </property>
-     <property name="text">
-      <string>S min</string>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="0">
-    <widget class="QLabel" name="delta_S">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QLabel {background-color: #f0f0f0;
-                                min-height: 18px;
-                                min-width: 70px;
-                                border-top: 1px solid rgba(160, 160, 160, 255);
-                                border-left: 1px solid rgba(160, 160, 160, 255);
-                                border-right: 1px solid rgba(255, 255, 255, 255);
-                                border-bottom: 1px solid rgba(255, 255, 255, 255);
-                                }</string>
-     </property>
-     <property name="text">
-      <string>Δ</string>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="0">
-    <widget class="QLabel" name="d">
+   <item row="0" column="0">
+    <widget class="QLabel" name="T">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
        <horstretch>0</horstretch>
@@ -259,37 +161,11 @@
                                 }</string>
      </property>
      <property name="text">
-      <string>d max/min</string>
+      <string>T max/min</string>
      </property>
     </widget>
    </item>
-   <item row="8" column="1" rowspan="4">
-    <widget class="QCustomPlot" name="deflWind" native="true"/>
-   </item>
-   <item row="9" column="0">
-    <widget class="QLabel" name="label_Dmax">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QLabel {background-color: #f0f0f0;
-                                min-height: 18px;
-                                min-width: 70px;
-                                border-top: 1px solid rgba(160, 160, 160, 255);
-                                border-left: 1px solid rgba(160, 160, 160, 255);
-                                border-right: 1px solid rgba(255, 255, 255, 255);
-                                border-bottom: 1px solid rgba(255, 255, 255, 255);
-                                }</string>
-     </property>
-     <property name="text">
-      <string>D max</string>
-     </property>
-    </widget>
-   </item>
-   <item row="10" column="0">
+   <item row="12" column="0">
     <widget class="QLabel" name="label_Dmin">
      <property name="enabled">
       <bool>true</bool>
@@ -315,8 +191,175 @@
      </property>
     </widget>
    </item>
-   <item row="11" column="0">
-    <widget class="QLabel" name="delta_d">
+   <item row="22" column="0">
+    <widget class="QLabel" name="label_Hmin">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
+     </property>
+     <property name="text">
+      <string>H min</string>
+     </property>
+    </widget>
+   </item>
+   <item row="16" column="0">
+    <widget class="QLabel" name="label_Pmax">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
+     </property>
+     <property name="text">
+      <string>P max</string>
+     </property>
+    </widget>
+   </item>
+   <item row="14" column="0">
+    <spacer name="verticalSpacer_3">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_Tmax">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
+     </property>
+     <property name="text">
+      <string>T max</string>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="1" rowspan="5">
+    <widget class="QCustomPlot" name="deflWind" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>532</width>
+       <height>98</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="QLabel" name="label_Smax">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
+     </property>
+     <property name="text">
+      <string>S max</string>
+     </property>
+    </widget>
+   </item>
+   <item row="15" column="1" rowspan="5">
+    <widget class="QCustomPlot" name="pressure" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>532</width>
+       <height>98</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="0">
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="7" column="0">
+    <widget class="QLabel" name="label_Smin">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
+     </property>
+     <property name="text">
+      <string>S min</string>
+     </property>
+    </widget>
+   </item>
+   <item row="18" column="0">
+    <widget class="QLabel" name="delta_P">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -341,57 +384,7 @@
      </property>
     </widget>
    </item>
-   <item row="12" column="0">
-    <widget class="QLabel" name="P">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QLabel {background-color: #f0f0f0;
-								text-align: bottom
-                                }</string>
-     </property>
-     <property name="text">
-      <string>P max/min</string>
-     </property>
-    </widget>
-   </item>
-   <item row="12" column="1" rowspan="4">
-    <widget class="QCustomPlot" name="pressure" native="true"/>
-   </item>
-   <item row="13" column="0">
-    <widget class="QLabel" name="label_Pmax">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QLabel {background-color: #f0f0f0;
-                                min-height: 18px;
-                                min-width: 70px;
-                                border-top: 1px solid rgba(160, 160, 160, 255);
-                                border-left: 1px solid rgba(160, 160, 160, 255);
-                                border-right: 1px solid rgba(255, 255, 255, 255);
-                                border-bottom: 1px solid rgba(255, 255, 255, 255);
-                                }</string>
-     </property>
-     <property name="text">
-      <string>P max</string>
-     </property>
-    </widget>
-   </item>
-   <item row="14" column="0">
+   <item row="17" column="0">
     <widget class="QLabel" name="label_Pmin">
      <property name="enabled">
       <bool>true</bool>
@@ -420,8 +413,8 @@
      </property>
     </widget>
    </item>
-   <item row="15" column="0">
-    <widget class="QLabel" name="delta_P">
+   <item row="13" column="0">
+    <widget class="QLabel" name="delta_d">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -446,7 +439,181 @@
      </property>
     </widget>
    </item>
-   <item row="16" column="0">
+   <item row="11" column="0">
+    <widget class="QLabel" name="label_Dmax">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
+     </property>
+     <property name="text">
+      <string>D max</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="21" column="0">
+    <widget class="QLabel" name="label_Hmax">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
+     </property>
+     <property name="text">
+      <string>H max</string>
+     </property>
+    </widget>
+   </item>
+   <item row="23" column="0">
+    <widget class="QLabel" name="delta_h">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
+     </property>
+     <property name="text">
+      <string>Δ</string>
+     </property>
+    </widget>
+   </item>
+   <item row="19" column="0">
+    <spacer name="verticalSpacer_4">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="8" column="0">
+    <widget class="QLabel" name="delta_S">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
+     </property>
+     <property name="text">
+      <string>Δ</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="delta_T">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+                                min-height: 18px;
+                                min-width: 70px;
+                                border-top: 1px solid rgba(160, 160, 160, 255);
+                                border-left: 1px solid rgba(160, 160, 160, 255);
+                                border-right: 1px solid rgba(255, 255, 255, 255);
+                                border-bottom: 1px solid rgba(255, 255, 255, 255);
+                                }</string>
+     </property>
+     <property name="text">
+      <string>Δ</string>
+     </property>
+    </widget>
+   </item>
+   <item row="15" column="0">
+    <widget class="QLabel" name="P">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {background-color: #f0f0f0;
+								text-align: bottom
+                                }</string>
+     </property>
+     <property name="text">
+      <string>P max/min</string>
+     </property>
+    </widget>
+   </item>
+   <item row="20" column="0">
     <widget class="QLabel" name="h">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -470,81 +637,13 @@
      </property>
     </widget>
    </item>
-   <item row="16" column="1" rowspan="4">
-    <widget class="QCustomPlot" name="humidity" native="true"/>
-   </item>
-   <item row="17" column="0">
-    <widget class="QLabel" name="label_Hmax">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QLabel {background-color: #f0f0f0;
-                                min-height: 18px;
-                                min-width: 70px;
-                                border-top: 1px solid rgba(160, 160, 160, 255);
-                                border-left: 1px solid rgba(160, 160, 160, 255);
-                                border-right: 1px solid rgba(255, 255, 255, 255);
-                                border-bottom: 1px solid rgba(255, 255, 255, 255);
-                                }</string>
-     </property>
-     <property name="text">
-      <string>H max</string>
-     </property>
-    </widget>
-   </item>
-   <item row="18" column="0">
-    <widget class="QLabel" name="label_Hmin">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QLabel {background-color: #f0f0f0;
-                                min-height: 18px;
-                                min-width: 70px;
-                                border-top: 1px solid rgba(160, 160, 160, 255);
-                                border-left: 1px solid rgba(160, 160, 160, 255);
-                                border-right: 1px solid rgba(255, 255, 255, 255);
-                                border-bottom: 1px solid rgba(255, 255, 255, 255);
-                                }</string>
-     </property>
-     <property name="text">
-      <string>H min</string>
-     </property>
-    </widget>
-   </item>
-   <item row="19" column="0">
-    <widget class="QLabel" name="delta_h">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QLabel {background-color: #f0f0f0;
-                                min-height: 18px;
-                                min-width: 70px;
-                                border-top: 1px solid rgba(160, 160, 160, 255);
-                                border-left: 1px solid rgba(160, 160, 160, 255);
-                                border-right: 1px solid rgba(255, 255, 255, 255);
-                                border-bottom: 1px solid rgba(255, 255, 255, 255);
-                                }</string>
-     </property>
-     <property name="text">
-      <string>Δ</string>
+   <item row="5" column="1" rowspan="5">
+    <widget class="QCustomPlot" name="speedwind" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>532</width>
+       <height>98</height>
+      </size>
      </property>
     </widget>
    </item>

@@ -17,9 +17,19 @@ plot_window::plot_window(QWidget *parent) :
     //pen.setBrush(QBrush(QColor(0, 0, 255, 20))); // first graph will be filled with translucent blue
     pen.setColor(QColor(48,0,255));              // line color blue for first grap
 
+
+//    lsNone
+//    ,lsLine
+//    ,lsStepLeft
+//    ,lsStepRight
+//    ,lsStepCenter
+//    ,lsImpulse
+
+
     // temperature
     ui->temp->addGraph();
     ui->temp->setBackground(QColor(240, 240, 240));
+    ui->temp->graph()->setLineStyle(QCPGraph::lsLine);
 //    ui->temp->graph()->setScatterStyle(QCPScatterStyle::ssCircle);   // style point
 //    ui->temp->graph(0)->setBrush(QBrush(QColor(0, 0, 255, 20))); // first graph will be filled with translucent blue
     ui->temp->graph(0)->setPen(pen);
