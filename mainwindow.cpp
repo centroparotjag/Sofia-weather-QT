@@ -9,7 +9,7 @@
 
 #include <QDebug>
 
-QString version ="V2.2.8";
+QString version ="V2.2.9";
 int id=710719;              // Чернівці default
 
 MainWindow::MainWindow(QWidget *parent)
@@ -75,6 +75,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->comboBox->addItem( "Сімферополь"     ,"24");
         ui->comboBox->addItem( "Мала Токмачка"   ,"25");
         ui->comboBox->addItem( "Красногорівка"   ,"26");
+        ui->comboBox->addItem( "Суджа"           ,"27");    //москаляндія
 
         // read settings from register
         /* При создании главного окна производим установку начальных параметров
@@ -161,6 +162,13 @@ void MainWindow::onGo() {
     qDebug() << "Working...";
 
     //ui->textEdit->clear();  //format.setFontWeight(QFont::Bold);
+
+    if( count_data%24 == 0){
+         ui->textEdit->clear();
+         ui->textEdit->setTextColor(QColor::fromRgb(255,0,255));
+         ui->textEdit->append("Log cleaning (every 24 hours).");
+    }
+
     ui->textEdit->setFontWeight(QFont::Bold);
     ui->textEdit->setTextColor(QColor::fromRgb(29,4,255));         // QColor::fromRgb(0,20,50)
     ui->textEdit->append( "********************************************************************" );
@@ -232,6 +240,7 @@ void MainWindow::on_comboBox_activated(int index)
         case 24: id=693805; break;      //"Сімферополь"
         case 25: id=702153; break;      //"Мала Токмачка"
         case 26: id=704393; break;      //"Красногорівка"
+        case 27: id=486816; break;      //"Суджа" москаляндія
 
         default: id=710719; break;      //"Чернівці"
     }

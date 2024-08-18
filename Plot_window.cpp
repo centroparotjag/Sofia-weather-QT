@@ -15,7 +15,7 @@ plot_window::plot_window(QWidget *parent) :
     QPen pen;
     pen.setWidth(2);
     //pen.setBrush(QBrush(QColor(0, 0, 255, 20))); // first graph will be filled with translucent blue
-    pen.setColor(QColor(48,0,255));              // line color blue for first grap
+    pen.setColor(QColor(102,102,255));              // line color blue for first grap
 
 
 //    lsNone

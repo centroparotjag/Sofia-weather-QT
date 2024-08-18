@@ -102,7 +102,7 @@ QString MainWindow::find_city(QString data){
     return result;
 }
 
-uint count_data = 0;
+
 int last_update_hour = 55;
 
 void MainWindow::parser_request (QString data ){
@@ -137,7 +137,7 @@ void MainWindow::parser_request (QString data ){
 
 
 //    //+++++++++++++++ TEST +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//    plot_window.plot_g1(weather1.temp-273.16 - count_data, weather1.wind_speed + count_data, weather1.wind_deg + count_data,
+//    plot_window.plot_g1(weather1.temp-273.16 + count_data, weather1.wind_speed + count_data, weather1.wind_deg + count_data,
 //                        weather1.pressure*0.75 + count_data, weather1.humidity + count_data, count_data);
 //    count_data++;
 //    //+++++++++++++++ TEST ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -340,7 +340,10 @@ void MainWindow::parser_request (QString data ){
     int h_s = h_u;
     int m_s = m_u;
 
-    if ( ((h_r==hour && m_r<m_u) || h_r<hour) && ((h_s==hour && m_s>m_u) || h_s>hour) ){
+//    qDebug() << "h_r - "  << h_r << ",  m_r - " << m_r;
+//    qDebug() << "hour - "  << hour << ",  min - " << min;
+
+    if ( ((h_r==hour && m_r<min) || h_r<hour) && ((h_s==hour && m_s>min) || h_s>hour) ){
         d_n="d";            // day
     }
     else {

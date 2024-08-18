@@ -62,6 +62,8 @@ public:
 
     int tic5 = 0;
 
+    uint count_data = 0;
+
 public:
     void parser_request (QString data);
     QString find_data(QString data, QString search);
